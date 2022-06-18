@@ -19,7 +19,6 @@ from django.urls import path
 from main.views import get_foto, sync
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('get_photos/', get_foto, name='photo'),
-    path('sync/', sync, name='sync'),
+    path('admin/', sync, name='sync'),
 ]
