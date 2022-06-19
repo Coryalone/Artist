@@ -8,7 +8,7 @@ import requests, json, time, random
 from main.models import Pictures
 
 VK_USER_ID = '62391816'
-VK_TOKEN = 'vk1.a.O8apl0KiwnzLmW7gcYU0DlVQZCyBRZ3HZAQx3gmktGjTI3ZcTx5CLPUEnf91njAzOxbTSLI-fIC9QSdv7SJ1ua9kqJZ7CzwJLf_X_Vl5p4DtpBAWC1mS_nbExvkMufhism26-wyUX8XaWF0rt5XZYo-GYTE2P9qHMB_fv6ZzuuGbhR69cbOrdHgd8oW25kMI'
+VK_TOKEN = 'vk1.a.Dmkh1g3hhOi7hEGyDOtv4Ft6evuFAvdgoA1UywVZR1aGFrysnXE1RR27PNoM6g26zLH6gfKO7HIYj6F3R0wGHnKUkGBS3ET-Hdg78SNWgl4aubWxQ0W1BX4YIjYvzlQuTjAKrwKIQQnOJE6ZOvbNUpffsaF2huGvmVS98b0eSPQuPDfLcDAxp38rsK6Mw-KT'
 
 
 def get_foto_data(offset=0, count=50):
@@ -24,12 +24,17 @@ def get_foto_data(offset=0, count=50):
 
 
 def get_foto(request):
-    return HttpResponse("one<br>two<br>three<br>four<br>five<br>six<br>seven<br>")
+
     urls_set = set()
+
+    photo_url = []
+
     data = get_foto_data()
-    count_foto = data["response"]["count"] * 2  # сделать оптимизацию запросов
+    count_foto = data["response"]["count"]   # сделать оптимизацию запросов
     # print(count_foto)
     photos = get_foto_data()['response']['items']
+    id_shit = [x['id'] for x in photos]
+    #print(id_shit)
     i = 0
     w = 0
     count = 50
@@ -39,24 +44,35 @@ def get_foto(request):
             # print(i)
             photos = get_foto_data(offset=i, count=count)['response']['items']
         # print(len(photos))
-        for lst in photos:
-            for item in lst['sizes']:
+        for dick in photos:
+            new_photo = {}
+
+            new_photo['id'] = dick['id']
+            for item in dick['sizes']:
                 if item['type'] == 'm':
-                    urls_set.add(item['url'])
-                    fotos.append(item['url'])
-                    # print(item['url'])
+                    new_photo['small_url'] = item['url']
                 elif item['type'] == 'x':
-                    urls_set.add(item['url'])
-                    fotos.append(item['url'])
+                    new_photo['big_url'] = item['url']
+
+            photo_url.append(new_photo)
+
         # print(i)
         i += count
         # w += len(urls_set)
 
     # print(len(fotos))
+    print(photo_url)
     # print(str(len(urls_set))+' длинна')
     # print(len(get_data()))
-    # print(len(urls_set))
+    #print((urls_set))
     # print(get_data())
+
+    for url in photo_url:
+        pictures = Pictures(id_photo=url['id'], url_small=url['small_url'], url_big=url['big_url'])
+        pictures.save()
+
+
+    '''
     res = []
     clean_data = set()
     for suburl in urls_set:
@@ -84,18 +100,22 @@ def get_foto(request):
         vk_api = list(clean_data)
         #print(qer == wer)
         ZALUPA = 0
+    '''
+
+    '''
         for url in vk_api:
             if url not in bd_data:
                 pictures = Pictures(photos=url)
                 pictures.save()
             else:
                 pass
-        print(ZALUPA)
+        #print(ZALUPA)
 
     else:
         for url in urls_set:
             pictures = Pictures(photos=url)
             pictures.save()
+    '''
 
 
 
