@@ -61,15 +61,21 @@ def get_foto(request):
         # w += len(urls_set)
 
     # print(len(fotos))
-    print(photo_url)
+    #print(photo_url)
     # print(str(len(urls_set))+' длинна')
     # print(len(get_data()))
     #print((urls_set))
     # print(get_data())
 
-    for url in photo_url:
-        pictures = Pictures(id_photo=url['id'], url_small=url['small_url'], url_big=url['big_url'])
-        pictures.save()
+    all_ids = get_data()
+
+    for photo in photo_url:
+        if photo['id'] not in all_ids:
+            pictures = Pictures(id_photo=photo['id'], url_small=photo['small_url'], url_big=photo['big_url'])
+            pictures.save()
+
+
+
 
 
     '''
@@ -127,8 +133,8 @@ def sync(request):
 
 
 def get_data():
-    a = list(Pictures.objects.values('photos'))
-    check_set = set()
-    for i in a:
-        check_set.add(i['photos'])
-    return check_set
+    check_list = list(Pictures.objects.values('id_photo'))
+    pay_list = []
+    for i in check_list:
+        pay_list.append(i['id_photo'])
+    return pay_list
