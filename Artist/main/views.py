@@ -74,56 +74,7 @@ def get_foto(request):
             pictures = Pictures(id_photo=photo['id'], url_small=photo['small_url'], url_big=photo['big_url'])
             pictures.save()
 
-
-
-
-
-    '''
-    res = []
-    clean_data = set()
-    for suburl in urls_set:
-        res.append(re.search(r"/[a-zA-Z0-9_\-]+\.(\w+)\?", suburl))
-
-    for i in res:
-        if i is not None:
-            clean_data.add(i.group(0))
-
-    # pes = (get_data().difference_update(urls_set))
-    # print(pes)
-    counter = 0
-    if get_data():
-        result = []
-        filter_data = set()
-        for suburl in get_data():
-            result.append(re.search(r"/[a-zA-Z0-9_\-]+\.(\w+)\?", suburl))
-
-        for i in result:
-            if i is not None:
-                filter_data.add(i.group(0))
-
-        bd_data = list(filter_data)
-        #print(qer)
-        vk_api = list(clean_data)
-        #print(qer == wer)
-        ZALUPA = 0
-    '''
-
-    '''
-        for url in vk_api:
-            if url not in bd_data:
-                pictures = Pictures(photos=url)
-                pictures.save()
-            else:
-                pass
-        #print(ZALUPA)
-
-    else:
-        for url in urls_set:
-            pictures = Pictures(photos=url)
-            pictures.save()
-    '''
-
-
+    return render(request,  'photos_list.html', {'news': photo_url})
 
 
 def sync(request):
