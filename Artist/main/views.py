@@ -8,7 +8,7 @@ import requests, json, time, random
 from main.models import Pictures
 
 VK_USER_ID = '62391816'
-VK_TOKEN = 'vk1.a.Dmkh1g3hhOi7hEGyDOtv4Ft6evuFAvdgoA1UywVZR1aGFrysnXE1RR27PNoM6g26zLH6gfKO7HIYj6F3R0wGHnKUkGBS3ET-Hdg78SNWgl4aubWxQ0W1BX4YIjYvzlQuTjAKrwKIQQnOJE6ZOvbNUpffsaF2huGvmVS98b0eSPQuPDfLcDAxp38rsK6Mw-KT'
+VK_TOKEN = 'vk1.a.85NRe8pMBKpWy1D5oda9AF3I_52PJoeBDWQH1JHHMFQfE9tfB9RsrrCjzB1-BIl-Yk6rCp15fZiQG95fCp7niW-VOHlf__9w-4LjT2HFX0q_THPJhSzQ6jctFkPdnrrAPVKS1G-poRZITmc6PB1lsuDTyxrqim8irX6oDkDEmdJYKLJzqczRpSpG2poNTu_S'
 
 
 def get_foto_data(offset=0, count=50):
