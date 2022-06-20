@@ -1,4 +1,5 @@
 import re
+import os
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -8,7 +9,7 @@ import requests, json, time, random
 from main.models import Pictures
 
 VK_USER_ID = '62391816'
-VK_TOKEN = 'vk1.a.85NRe8pMBKpWy1D5oda9AF3I_52PJoeBDWQH1JHHMFQfE9tfB9RsrrCjzB1-BIl-Yk6rCp15fZiQG95fCp7niW-VOHlf__9w-4LjT2HFX0q_THPJhSzQ6jctFkPdnrrAPVKS1G-poRZITmc6PB1lsuDTyxrqim8irX6oDkDEmdJYKLJzqczRpSpG2poNTu_S'
+VK_TOKEN = os.environ['VK_TOKEN']
 
 
 def get_foto_data(offset=0, count=50):
