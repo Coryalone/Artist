@@ -20,6 +20,6 @@ from main.views import get_foto, sync
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('get_photos/', get_foto, name='photo'),
+    path('get_photos/', get_photos, name='photo'),
     path('sync/', sync, name='sync'),
 ]
