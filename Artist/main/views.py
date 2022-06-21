@@ -9,7 +9,7 @@ import requests, json, time, random
 from main.models import Pictures
 
 VK_USER_ID = '62391816'
-VK_TOKEN = os.environ['VK_TOKEN']
+VK_TOKEN = os.getenv('VK_TOKEN')
 
 
 def get_photo_data(offset=0, count=50):

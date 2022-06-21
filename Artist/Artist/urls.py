@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from main.views import get_foto, sync
+from main.views import sync, get_photos
 
 urlpatterns = [
     path('admin/', admin.site.urls),
