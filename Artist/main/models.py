@@ -14,7 +14,12 @@ class Pictures(models.Model):
 
 
 
+
+
 class Category(models.Model):
     title = models.CharField(max_length=150, verbose_name='Наименование категории')
+
+    def __str__(self):
+        return self.title
 
 

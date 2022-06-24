@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 
 import requests, json, time, random
 
+from main.forms import PostForm
 from main.models import Pictures
 
 VK_USER_ID = '62391816'
@@ -25,7 +26,6 @@ def get_photo_data(offset=0, count=50):
 
 
 def get_photos(request):
-
     urls_set = set()
 
     photos = []
@@ -58,7 +58,7 @@ def get_photos(request):
             pictures = Pictures(id_photo=photo['id'], url_small=photo['small_url'], url_big=photo['big_url'])
             pictures.save()
 
-    return render(request,  'photos_list.html', {'news': photos})
+    return render(request, 'photos_list.html', {'news': photos})
 
 
 def sync(request):
@@ -73,3 +73,45 @@ def get_all_ids():
     for i in check_list:
         pay_list.append(i['id_photo'])
     return pay_list
+
+
+def add_new(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+
+    else:
+        form = PostForm()
+    return render(request, 'add_new.html', {'form': form})
+
+
+# relative import of forms
+from .forms import GeeksForm
+
+# importing formset_factory
+from django.forms import formset_factory
+
+
+def formset_view(request):
+    context = {}
+
+    # creating a formset and 5 instances of GeeksForm
+    GeeksFormSet = formset_factory(GeeksForm, extra=2)
+    formset = GeeksFormSet(request.POST or None, initial=[
+        {'title': 'Django is now open source',
+         'description': 'Bebra',
+         'id_photo': '23',
+         'url_small': '234234',
+         'url_big': 'fbhfgudg'}
+    ])
+
+    # print formset data if it is valid
+    if formset.is_valid():
+        for form in formset:
+            print(form.cleaned_data)
+
+    # Add the formset to context dictionary
+    context['formset'] = formset
+    #context['deep'] = [1, 2, 3]
+    return render(request, "home.html", context)
