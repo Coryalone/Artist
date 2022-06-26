@@ -8,9 +8,9 @@ class Pictures(models.Model):
     sync_date = models.DateTimeField(auto_now=True, verbose_name='Синхронизированно')
     name = models.CharField(max_length=50, verbose_name='Название картины', blank=True)
     description = models.CharField(max_length=150, verbose_name='Описание картины', blank=True)
-    category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True)
-    visible = models.BooleanField(default=False, verbose_name='Отображать на главной')
-    not_upload = models.BooleanField(default=False, verbose_name='Не загружать из ВК')
+    category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True, blank=True)
+    visible = models.BooleanField(default=False, verbose_name='Отображать на главной', blank=True, null=True)
+    not_upload = models.BooleanField(default=False, verbose_name='Не загружать из ВК', blank=True, null=True)
 
 
 

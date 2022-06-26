@@ -52,13 +52,14 @@ def get_photos(request):
         i += count
 
     all_ids = get_all_ids()
+    fresh_photos = []
 
     for photo in photos:
         if photo['id'] not in all_ids:
-            pictures = Pictures(id_photo=photo['id'], url_small=photo['small_url'], url_big=photo['big_url'])
-            pictures.save()
+            fresh_photos.append(photo)
 
-    return render(request, 'photos_list.html', {'news': photos})
+
+    return photos, fresh_photos
 
 
 def sync(request):
@@ -95,21 +96,18 @@ from django.forms import formset_factory
 
 def formset_view(request):
     context = {}
-
+    spisok = get_photos(request)[1]
     # creating a formset and 5 instances of GeeksForm
-    GeeksFormSet = formset_factory(GeeksForm, extra=2)
+    GeeksFormSet = formset_factory(GeeksForm, extra=0)
     formset = GeeksFormSet(request.POST or None, initial=[
-        {'title': 'Django is now open source',
-         'description': 'Bebra',
-         'id_photo': '23',
-         'url_small': '234234',
-         'url_big': 'fbhfgudg'}
+        {'id_photo': x['id'], 'url_small': x['small_url'], 'url_big': x['big_url']} for x in spisok
     ])
 
     # print formset data if it is valid
     if formset.is_valid():
         for form in formset:
-            print(form.cleaned_data)
+            #print(form.cleaned_data)
+            Pictures.objects.create(**form.cleaned_data)
 
     # Add the formset to context dictionary
     context['formset'] = formset

@@ -14,11 +14,14 @@ class PostForm(forms.Form):
 
 
 class GeeksForm(forms.Form):
-    title = forms.CharField()
-    description = forms.CharField()
+    name = forms.CharField(required=False)
+    description = forms.CharField(required=False)
     id_photo = forms.IntegerField()
     url_small = forms.CharField()
     url_big = forms.CharField()
+    visible = forms.BooleanField(required=False)
+    not_upload = forms.BooleanField(required=False)
+    category = forms.ModelChoiceField(queryset=Category.objects.all(), widget=forms.Select(), initial=6)
 
 
 GeeksFormSet = formset_factory(GeeksForm)
