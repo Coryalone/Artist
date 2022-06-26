@@ -58,7 +58,6 @@ def get_photos(request):
         if photo['id'] not in all_ids:
             fresh_photos.append(photo)
 
-
     return photos, fresh_photos
 
 
@@ -106,10 +105,56 @@ def formset_view(request):
     # print formset data if it is valid
     if formset.is_valid():
         for form in formset:
-            #print(form.cleaned_data)
+            # print(form.cleaned_data)
             Pictures.objects.create(**form.cleaned_data)
 
     # Add the formset to context dictionary
     context['formset'] = formset
-    #context['deep'] = [1, 2, 3]
+    # context['deep'] = [1, 2, 3]
     return render(request, "home.html", context)
+
+
+def all_photos_view(request):
+    data_list = []
+    photo_list = list(Pictures.objects.all())
+    context = {}
+    GeeksFormSet = formset_factory(GeeksForm, extra=0)
+    formset = GeeksFormSet(request.POST or None, initial=[
+        {'id_photo': x.id_photo, 'url_small': x.url_small, 'url_big': x.url_big,
+         'name': x.name, 'description': x.description,
+         'visible': x.visible, 'not_upload': x.not_upload} for x in photo_list
+    ])
+    list_of_instance = []
+    # print formset data if it is valid
+
+    if formset.is_valid():
+        for form in formset:
+            for photo in photo_list:
+                if form.cleaned_data['id_photo'] == photo.id_photo:
+                    photo.id_photo = form.cleaned_data['id_photo']
+                    photo.url_small = form.cleaned_data['url_small']
+                    photo.url_big = form.cleaned_data['url_big']
+                    photo.name = form.cleaned_data['name']
+                    photo.description = form.cleaned_data['description']
+                    photo.category = form.cleaned_data['category']
+                    photo.visible = form.cleaned_data['visible']
+                    photo.not_upload = form.cleaned_data['not_upload']
+                    photo.save()
+
+    context['formset'] = formset
+    return render(request, "all_data.html", context)
+
+
+def create_pic(id_photo, url_small, url_big, sync_date, name, description, category, visible, not_upload):
+    pic_id = id_photo
+    pic_url_s = url_small
+    pic_url_b = url_big
+    pic_id_sd = sync_date
+    pic_id_name = name
+    pic_id_desc = description
+    pic_id_cat = category
+    pic_id_vis = visible
+    pic_id_nu = not_upload
+
+    return pic_id, pic_url_s, pic_url_b, pic_id_sd, pic_id_name, pic_id_desc,  pic_id_cat, pic_id_vis, pic_id_nu
+
