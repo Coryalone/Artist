@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .model-form {
+            display: flex;
+            flex-direction: row;
+        }
+        .nav-menu {
+            position: sticky;
+            width: 98%;
+            top: 0;
+            left: 0;
+            padding: 20px;
+            margin-bottom: 10px;
+            background: #eee;
+            z-index: 100;
+        }
+        .nav-menu a{
+            color: black;
+            text-decoration: none;
+        }
+        .model-field-label {
+            display: inline-block;
+        }
+        .model-field-value {
+            display: inline-block;
+        }
+        .preview {
+            position: relative;
+            width: 200px;
+        }
+        .preview img {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 112px;
+            margin-right: 20px;
+        }
+
+        .model-field-col-1 .model-field-label {
+            width: 100px;
+        }
+        .model-field-name {
+            width: 500px;
+        }
+        .model-field-name .model-field-value {
+            width: 300px;
+            padding: 1px;
+        }
+        .model-field-name .model-field-value input {
+            width: 300px;
+            padding: 1px;
+        }
+        .model-field-description {
+            width: 600px;
+        }
+        .model-field-description .model-field-value {
+            width: 300px;
+        }
+        .model-field-description .model-field-value textarea {
+            width: 300px;
+            height: 80px;
+        }
+        .model-field-description {
+            width: 600px;
+        }
+        .model-field-category {
+            margin-bottom: 30px;
+        }
+
+    </style>
+</head>
+<body>
+<body>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="nav-menu">
+      <button><a href="/new_photos">Синхронизировать новые фото из ВК</a></button>
+      <button type="submit" value="Submit">Сохранить изменения</button>
+    </div>
+
+
+    {{ formset.management_form }}
+    {% for form in formset %}
+        <div class="model-form">
+
+            <div class="preview">
+                <img src="{{ form.url_small.value }}"/>
+            </div>
+            <div style="display: none;">{{ form.id_photo }}</div>
+            <div style="display: none;">{{ form.url_small }}</div>
+            <div style="display: none;">{{ form.url_big }}</div>
+            <div class="model-field-col-1">
+                <div class="model-field model-field-name">
+                    <div class="model-field-label">{{ form.name.label_tag }}</div>
+                    <div class="model-field-value">{{ form.name }}</div>
+                </div>
+                <div class="model-field model-field-description">
+                    <div class="model-field-label">{{ form.description.label_tag }}</div>
+                    <div class="model-field-value">{{ form.description }}</div>
+                </div>
+            </div>
+            <div class="model-field-col-2">
+                <div class="model-field model-field-category">
+                    <div class="model-field-label">{{ form.category.label_tag }}</div>
+                    <div class="model-field-value">{{ form.category }}</div>
+                </div>
+                <div class="model-field model-field-visible">
+                    <div class="model-field-label">{{ form.visible.label_tag }}</div>
+                    <div class="model-field-value">{{ form.visible }}</div>
+                </div>
+                <div class="model-field model-field-not_upload">
+                    <div class="model-field-label">{{ form.not_upload.label_tag }}</div>
+                    <div class="model-field-value">{{ form.not_upload }}</div>
+                </div>
+            </div>
+
+
+        </div>
+    <hr>
+    {% endfor %}
+
+    <input type="submit" value="Submit" style="position: fixed">
+</form>
+
+</body>
+</html>
+

@@ -1,13 +1,14 @@
-import re
-import os
+import re, os, json, time, random
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from .forms import GeeksForm
+from django.forms import formset_factory
 
-import requests, json, time, random
-
+import requests
 from main.forms import PostForm
 from main.models import Pictures
+
 
 VK_USER_ID = '62391816'
 VK_TOKEN = os.getenv('VK_TOKEN')
@@ -25,7 +26,7 @@ def get_photo_data(offset=0, count=50):
     return json.loads(api.text)
 
 
-def get_photos(request):
+def get_fresh_photos(request):
     urls_set = set()
 
     photos = []
@@ -58,13 +59,7 @@ def get_photos(request):
         if photo['id'] not in all_ids:
             fresh_photos.append(photo)
 
-    return photos, fresh_photos
-
-
-def sync(request):
-    if request.method == 'POST':
-        return redirect('photo')
-    return render(request, 'sync.html')
+    return fresh_photos
 
 
 def get_all_ids():
@@ -75,46 +70,24 @@ def get_all_ids():
     return pay_list
 
 
-def add_new(request):
-    if request.method == 'POST':
-        form = PostForm(request.POST)
-        if form.is_valid():
-            print(form.cleaned_data)
-
-    else:
-        form = PostForm()
-    return render(request, 'add_new.html', {'form': form})
-
-
-# relative import of forms
-from .forms import GeeksForm
-
-# importing formset_factory
-from django.forms import formset_factory
-
-
-def formset_view(request):
+def new_photos(request):
     context = {}
-    spisok = get_photos(request)[1]
-    # creating a formset and 5 instances of GeeksForm
+    spisok = get_fresh_photos(request)
+
     GeeksFormSet = formset_factory(GeeksForm, extra=0)
     formset = GeeksFormSet(request.POST or None, initial=[
         {'id_photo': x['id'], 'url_small': x['small_url'], 'url_big': x['big_url']} for x in spisok
     ])
 
-    # print formset data if it is valid
     if formset.is_valid():
         for form in formset:
-            # print(form.cleaned_data)
             Pictures.objects.create(**form.cleaned_data)
 
-    # Add the formset to context dictionary
     context['formset'] = formset
-    # context['deep'] = [1, 2, 3]
-    return render(request, "home.html", context)
+    return render(request, "new_photos.html", context)
 
 
-def all_photos_view(request):
+def all_photos(request):
     data_list = []
     photo_list = list(Pictures.objects.all())
     context = {}
@@ -125,7 +98,6 @@ def all_photos_view(request):
          'visible': x.visible, 'not_upload': x.not_upload} for x in photo_list
     ])
     list_of_instance = []
-    # print formset data if it is valid
 
     if formset.is_valid():
         for form in formset:
@@ -141,20 +113,6 @@ def all_photos_view(request):
                     photo.not_upload = form.cleaned_data['not_upload']
                     photo.save()
 
+
     context['formset'] = formset
-    return render(request, "all_data.html", context)
-
-
-def create_pic(id_photo, url_small, url_big, sync_date, name, description, category, visible, not_upload):
-    pic_id = id_photo
-    pic_url_s = url_small
-    pic_url_b = url_big
-    pic_id_sd = sync_date
-    pic_id_name = name
-    pic_id_desc = description
-    pic_id_cat = category
-    pic_id_vis = visible
-    pic_id_nu = not_upload
-
-    return pic_id, pic_url_s, pic_url_b, pic_id_sd, pic_id_name, pic_id_desc,  pic_id_cat, pic_id_vis, pic_id_nu
-
+    return render(request, "all_photos.html", context)

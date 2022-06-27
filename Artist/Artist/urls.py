@@ -16,13 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from main.views import sync, get_photos, add_new, formset_view, all_photos_view
+from main.views import new_photos, all_photos
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('get_photos/', get_photos, name='photo'),
-    path('sync/', sync, name='sync'),
-    path('add_new', add_new, name='add_new'),
-    path('mult_forms', formset_view, name='formset_view'),
-    path('all_photos_view', all_photos_view, name='all_photos_view'),
+    path('new_photos/', new_photos, name='new_photos'),
+    path('all_photos/', all_photos, name='all_photos'),
 ]
+
