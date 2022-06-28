@@ -75,18 +75,18 @@
 </head>
 <body>
 
-
+<h2 style="text-align:center">Синхронизация с ВК</h2>
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
-
     <div class="nav-menu">
       <button type="submit" value="Submit">Сохранить</button>
+        <button><a href="/admin">Отменить синхронизацию</a></button>
     </div>
-
 
     {{ formset.management_form }}
     {% for form in formset %}
+
         <div class="model-form">
 
             <div class="preview">
@@ -119,13 +119,11 @@
                     <div class="model-field-value">{{ form.not_upload }}</div>
                 </div>
             </div>
-
-
         </div>
     <hr>
+    {% empty %}
+    <div style="font-size:3rem">Синхронизация не требуется, все фото уже загружены</div>
     {% endfor %}
-
-
 </form>
 
 </body>

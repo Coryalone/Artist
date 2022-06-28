@@ -4,16 +4,7 @@ from .models import Category
 from django.forms import formset_factory
 
 
-class PostForm(forms.Form):
-
-    name = forms.CharField(max_length=150, widget=forms.TextInput(), initial='Breakfast')
-    description = forms.CharField(widget=forms.Textarea())
-    visible = forms.BooleanField()
-    not_upload = forms.BooleanField()
-    category = forms.ModelChoiceField(queryset=Category.objects.all(), widget=forms.Select())
-
-
-class GeeksForm(forms.Form):
+class PicturesForm(forms.Form):
     name = forms.CharField(required=False, label='Название')
     description = forms.CharField(required=False, label='Описание', widget=forms.Textarea())
     id_photo = forms.IntegerField()
@@ -25,6 +16,6 @@ class GeeksForm(forms.Form):
                                       label='Категория')
 
 
-GeeksFormSet = formset_factory(GeeksForm)
+
 
 

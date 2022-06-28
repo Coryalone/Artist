@@ -71,19 +71,19 @@
             margin-bottom: 30px;
         }
 
+
     </style>
 </head>
 <body>
 
-
+<h2 style="text-align:center">Редактирование фото</h2>
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
     <div class="nav-menu">
       <button><a href="/new_photos">Синхронизировать новые фото из ВК</a></button>
-      <button type="submit" value="Submit">Сохранить изменения</button>
+      <button type="submit" value="Submit" class="save-button" style="display:none; background: #a3f0bd">Сохранить изменения</button>
     </div>
-
 
     {{ formset.management_form }}
     {% for form in formset %}
@@ -119,15 +119,16 @@
                     <div class="model-field-value">{{ form.not_upload }}</div>
                 </div>
             </div>
-
-
         </div>
     <hr>
     {% endfor %}
 
-
 </form>
-
+<script>
+    document.querySelectorAll('input, textarea, select').forEach(x => x.addEventListener('input', (event) => {
+        document.querySelector('.save-button').style['display'] = 'inline-block'
+    }));
+</script>
 </body>
 </html>
 

@@ -20,6 +20,6 @@ from main.views import new_photos, all_photos
 
 urlpatterns = [
     path('new_photos/', new_photos, name='new_photos'),
-    path('all_photos/', all_photos, name='all_photos'),
+    path('admin/', all_photos, name='all_photos'),
 ]
 
