@@ -16,10 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from main.views import new_photos, all_photos
+from main.admin_views import new_photos, all_photos
+from main.front_views import api_shuffled_main_page_photos, api_photos_by_category
 
 urlpatterns = [
     path('new_photos/', new_photos, name='new_photos'),
     path('admin/', all_photos, name='all_photos'),
+    path('api/category', api_photos_by_category, name='api_category'),
+    path('api/main_page', api_shuffled_main_page_photos, name='api_main_page'),
 ]
 

@@ -80,7 +80,7 @@ def all_photos(request):
     formset = pictures_form(request.POST or None, initial=[
         {'id_photo': x.id_photo, 'url_small': x.url_small, 'url_big': x.url_big,
          'name': x.name, 'description': x.description,
-         'visible': x.visible, 'not_upload': x.not_upload} for x in all_photos
+         'visible': x.visible, 'not_upload': x.not_upload, 'category': x.category} for x in all_photos
     ])
 
     if formset.is_valid():
@@ -100,3 +100,4 @@ def all_photos(request):
     context = {}
     context['formset'] = formset
     return render(request, "all_photos.html", context)
+
