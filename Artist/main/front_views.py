@@ -1,6 +1,7 @@
 import random
 
 from django.http import JsonResponse
+from django.shortcuts import render
 
 from main.models import Pictures
 
@@ -21,4 +22,29 @@ def api_shuffled_main_page_photos(request):
     return JsonResponse({'data': response})
 
 
+def main_page(request):
+    return render(request, "index.html")
 
+
+def portraits(request):
+    return render(request, "portraits.html")
+
+
+def landscapes(request):
+    return render(request, "landscapes.html")
+
+
+def graphic(request):
+    return render(request, "graphic.html")
+
+
+def sculptures(request):
+    return render(request, "sculptures.html")
+
+
+def murals(request):
+    return render(request, "murals.html")
+
+
+def about(request):
+    return render(request, "about.html")
