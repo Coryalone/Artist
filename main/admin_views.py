@@ -9,7 +9,7 @@ import requests
 from main.models import Pictures
 
 
-VK_USER_ID = '62391816'
+VK_USER_ID = '739243666'
 VK_TOKEN = os.getenv('VK_TOKEN')
 
 
