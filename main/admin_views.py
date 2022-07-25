@@ -9,7 +9,7 @@ import requests
 from main.models import Pictures
 
 
-VK_USER_ID = '62391816'
+VK_USER_ID = os.getenv('VK_USER_ID')
 VK_TOKEN = os.getenv('VK_TOKEN')
 
 
@@ -46,7 +46,6 @@ def get_fresh_photos(request):
             new_photo['big_url'] = max(raw_photo['sizes'], key=lambda v: v['width'])['url']
             new_photo['text'] = re.sub(r'#[\w]+', '', raw_photo['text'])
             new_photo['raw_text'] = raw_photo['text']
-
             photos.append(new_photo)
 
         i += chunk_size
