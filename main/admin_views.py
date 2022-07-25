@@ -22,7 +22,6 @@ def get_photos_from_vk(offset=0, count=50):
         'photo_sizes': 0,
         'v': 5.103
     })
-
     return json.loads(api.text)
 
 
