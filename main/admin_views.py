@@ -65,9 +65,9 @@ def new_photos(request):
     formset = pictures_form(request.POST or None, initial=[
         {'id_photo': x['id'], 'url_small': x['small_url'], 'url_big': x['big_url'], 'description': x['text'],
          'visible': x['raw_text'].lower().find('#главная') != -1,
-         'category':  1 if x['raw_text'].lower().find('#портрет') != -1 else 2 if x['raw_text'].lower().find('#пейзаж') != -1 else \
-         3 if x['raw_text'].lower().find('#графика') != -1 else 4 if x['raw_text'].lower().find('#скульптур') != -1 else \
-         5 if x['raw_text'].lower().find('#мурал') != -1 else 6} for x in fresh_photos
+         'category':  os.getenv('PORTRAITS') if x['raw_text'].lower().find('#портрет') != -1 else os.getenv('LANDSCAPES') if x['raw_text'].lower().find('#пейзаж') != -1 else \
+         os.getenv('GRAPGIC') if x['raw_text'].lower().find('#графика') != -1 else os.getenv('SCULPTURES') if x['raw_text'].lower().find('#скульптур') != -1 else \
+         os.getenv('MURALS') if x['raw_text'].lower().find('#мурал') != -1 else os.getenv('DEFAULT')} for x in fresh_photos
     ])
 
     if formset.is_valid():
