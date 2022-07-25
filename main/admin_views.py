@@ -44,6 +44,9 @@ def get_fresh_photos(request):
             new_photo['id'] = raw_photo['id']
             new_photo['small_url'] = min(raw_photo['sizes'], key=lambda v: v['width'] if v['width'] > 600 else 1000000 - v['width'])['url']
             new_photo['big_url'] = max(raw_photo['sizes'], key=lambda v: v['width'])['url']
+            new_photo['text'] = re.sub(r'#[\w]+', '', raw_photo['text'])
+            new_photo['raw_text'] = raw_photo['text']
+
             photos.append(new_photo)
 
         i += chunk_size
@@ -61,7 +64,11 @@ def new_photos(request):
     fresh_photos = get_fresh_photos(request)
     pictures_form = formset_factory(PicturesForm, extra=0)
     formset = pictures_form(request.POST or None, initial=[
-        {'id_photo': x['id'], 'url_small': x['small_url'], 'url_big': x['big_url']} for x in fresh_photos
+        {'id_photo': x['id'], 'url_small': x['small_url'], 'url_big': x['big_url'], 'description': x['text'],
+         'visible': x['raw_text'].lower().find('#главная') != -1,
+         'category':  1 if x['raw_text'].lower().find('#портрет') != -1 else 2 if x['raw_text'].lower().find('#пейзаж') != -1 else \
+         3 if x['raw_text'].lower().find('#графика') != -1 else 4 if x['raw_text'].lower().find('#скульптур') != -1 else \
+         5 if x['raw_text'].lower().find('#мурал') != -1 else 6} for x in fresh_photos
     ])
 
     if formset.is_valid():
