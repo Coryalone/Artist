@@ -18,7 +18,7 @@ from django.urls import path
 
 from main.admin_views import new_photos, all_photos
 from main.front_views import api_shuffled_main_page_photos, api_photos_by_category, main_page, portraits, landscapes, \
-    graphic, sculptures, murals, about
+    graphics, sculptures, murals, about
 
 urlpatterns = [
     path('new_photos/', new_photos, name='new_photos'),
@@ -28,7 +28,7 @@ urlpatterns = [
     path('', main_page, name='main_page'),
     path('portraits', portraits, name='portraits'),
     path('landscapes', landscapes, name='landscapes'),
-    path('graphic', graphic, name='graphic'),
+    path('graphics', graphics, name='graphics'),
     path('sculptures', sculptures, name='sculptures'),
     path('murals', murals, name='murals'),
     path('about', about, name='about'),

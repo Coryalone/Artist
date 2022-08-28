@@ -22,7 +22,3 @@ navGroup.addEventListener('click', navItemsMobileAppear);
 function navItemsMobileAppear() {
     navItems.forEach((i) => i.classList.toggle('header__item-mobile_hidden'));
 }
-
-/* Image Zoom */
-
-mediumZoom('.gallery__item img');

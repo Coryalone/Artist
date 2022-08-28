@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 {% load static %}
 <html lang="ru">
@@ -7,35 +6,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Королёв Сергей - Личный сайт</title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <title>Настенная живопись</title>
 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/main.css' %}">
 
-    <script defer src="medium-zoom.min.js"></script>
-    <script defer src="main.js"></script>
+    <script defer src="{% static 'js/medium-zoom.min.js' %} "></script>
+    <script defer src="{% static 'js/main.js' %} "></script>
+    <script defer src="{% static 'js/lazyload.js' %} "></script>
+    <script defer src="{% static 'js/api.js' %}"></script>
+
 </head>
 
 <body>
     <header class="header">
         <div class="header__wrap">
             <div class="header__main-logo">
-                <a href="#">
-                    <svg width="11rem" height="7.6rem">
+                <a href="index.html">
+                    <svg class="header__main-logo-svg" width="11rem" height="7.6rem">
                         <use xlink:href="#main-logo"></use>
                     </svg>
                 </a>
             </div>
-            <h1 class="header__about">
-                <a href="#">Королёв Сергей - Художник, скульптор</a>
-            </h1>
+            <h1 class="header__about">Настенная живопись</h1>
         </div>
         <nav class="header__nav">
             <ul class="header__items">
-                <li class="header__item header__item_active"><a href="{% url 'main_page' %}">Главная</a></li>
+                <li class="header__item"><a href="{% url 'main_page' %}">Главная</a></li>
                 <li class="header__item"><a href="{% url 'portraits' %}">Портреты</a></li>
                 <li class="header__item"><a href="{% url 'landscapes' %}">Пейзажи</a></li>
-                <li class="header__item"><a href="{% url 'graphic' %}">Графика</a></li>
+                <li class="header__item"><a href="{% url 'graphics' %}">Графика</a></li>
                 <li class="header__item"><a href="{% url 'sculptures' %}">Скульптуры</a></li>
                 <li class="header__item"><a href="{% url 'murals' %}">Настенная живопись</a></li>
                 <li class="header__item"><a href="{% url 'about' %}">Контакты / Обо мне</a></li>
@@ -43,470 +44,190 @@
         </nav>
         <nav class="header__nav-mobile">
             <ul>
-                <li class="header__item-mobile header__item-group-mobile"><a href="#">Картины</a></li>
+                <li class="header__item-mobile header__item-group-mobile"><a>Картины</a></li>
+                <li class="header__item-mobile header__item-mobile_active header__item-mobile_hidden">
+                    <a href="index.html">Главная</a>
+                </li>
                 <li class="header__item-mobile header__item-mobile_active header__item-mobile_hidden"><a
-                        href="#">Главная</a></li>
+                        href="portraits.html">Портреты</a></li>
                 <li class="header__item-mobile header__item-mobile_active header__item-mobile_hidden"><a
-                        href="#">Портреты</a></li>
+                        href="landscapes.html">Пейзажи</a></li>
                 <li class="header__item-mobile header__item-mobile_active header__item-mobile_hidden"><a
-                        href="#">Пейзажи</a></li>
+                        href="graphics.html">Графика</a></li>
                 <li class="header__item-mobile header__item-mobile_active header__item-mobile_hidden"><a
-                        href="#">Графика</a></li>
-                <li class="header__item-mobile header__item-mobile_active header__item-mobile_hidden"><a
-                        href="#">Скульптуры</a></li>
-                <li class="header__item-mobile header__item-mobile_active header__item-mobile_hidden"><a
-                        href="#">Настенная живопись</a></li>
-                <li class="header__item-mobile"><a href="#">Контакты / Обо мне</a></li>
+                        href="sculptures.html">Скульптуры</a></li>
+                <li class="header__item-mobile header__item-mobile_active header__item-mobile_hidden">Настенная живопись
+                </li>
+                <li class="header__item-mobile"><a href="about.html">Контакты / Обо мне</a></li>
             </ul>
         </nav>
     </header>
     <main class="gallery__wrap">
-        <div class="gallery">
-            <div class="gallery__item">
-                <img src="images/1.jfif" alt="Изображение">
-                <h2 class="gallery_item-headline_mobile">Заголовок</h2>
-                <div class="gallery__item-details">
-                    <div class="gallery__item-info">
-                        <h2 class="gallery__item-headline">Заголовок</h2>
-                        <p class="gallery__item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                            saepe
-                            illo, consectetur, voluptatum accusamus ipsum odio eos officiis culpa, harum perferendis.
-                            Quisquam in possimus maiores recusandae cum dignissimos nulla culpa!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery__item">
-                <img src="images/2.jfif" alt="Изображение">
-                <h2 class="gallery_item-headline_mobile">Заголовок</h2>
-                <div class="gallery__item-details">
-                    <div class="gallery__item-info">
-                        <h2 class="gallery__item-headline">Заголовок</h2>
-                        <p class="gallery__item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                            saepe
-                            illo, consectetur, voluptatum accusamus ipsum odio eos officiis culpa, harum perferendis.
-                            Quisquam in possimus maiores recusandae cum dignissimos nulla culpa!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery__item">
-                <img src="images/3.jfif" alt="Изображение">
-                <h2 class="gallery_item-headline_mobile">Заголовок</h2>
-                <div class="gallery__item-details">
-                    <div class="gallery__item-info">
-                        <h2 class="gallery__item-headline">Заголовок</h2>
-                        <p class="gallery__item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                            saepe
-                            illo, consectetur, voluptatum accusamus ipsum odio eos officiis culpa, harum perferendis.
-                            Quisquam in possimus maiores recusandae cum dignissimos nulla culpa!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery__item">
-                <img src="images/4.jfif" alt="Изображение">
-                <h2 class="gallery_item-headline_mobile">Заголовок</h2>
-                <div class="gallery__item-details">
-                    <div class="gallery__item-info">
-                        <h2 class="gallery__item-headline">Заголовок</h2>
-                        <p class="gallery__item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                            saepe
-                            illo, consectetur, voluptatum accusamus ipsum odio eos officiis culpa, harum perferendis.
-                            Quisquam in possimus maiores recusandae cum dignissimos nulla culpa!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery__item">
-                <img src="images/5.jfif" alt="Изображение">
-                <h2 class="gallery_item-headline_mobile">Заголовок</h2>
-                <div class="gallery__item-details">
-                    <div class="gallery__item-info">
-                        <h2 class="gallery__item-headline">Заголовок</h2>
-                        <p class="gallery__item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                            saepe
-                            illo, consectetur, voluptatum accusamus ipsum odio eos officiis culpa, harum perferendis.
-                            Quisquam in possimus maiores recusandae cum dignissimos nulla culpa!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery__item">
-                <img src="images/6.jfif" alt="Изображение">
-                <h2 class="gallery_item-headline_mobile">Заголовок</h2>
-                <div class="gallery__item-details">
-                    <div class="gallery__item-info">
-                        <h2 class="gallery__item-headline">Заголовок</h2>
-                        <p class="gallery__item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                            saepe
-                            illo, consectetur, voluptatum accusamus ipsum odio eos officiis culpa, harum perferendis.
-                            Quisquam in possimus maiores recusandae cum dignissimos nulla culpa!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery__item">
-                <img src="images/7.jpg" alt="Изображение">
-                <h2 class="gallery_item-headline_mobile">Заголовок</h2>
-                <div class="gallery__item-details">
-                    <div class="gallery__item-info">
-                        <h2 class="gallery__item-headline">Заголовок</h2>
-                        <p class="gallery__item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                            saepe
-                            illo, consectetur, voluptatum accusamus ipsum odio eos officiis culpa, harum perferendis.
-                            Quisquam in possimus maiores recusandae cum dignissimos nulla culpa!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery__item">
-                <img src="images/8.jpg" alt="Изображение">
-                <h2 class="gallery_item-headline_mobile">Заголовок</h2>
-                <div class="gallery__item-details">
-                    <div class="gallery__item-info">
-                        <h2 class="gallery__item-headline">Заголовок</h2>
-                        <p class="gallery__item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                            saepe
-                            illo, consectetur, voluptatum accusamus ipsum odio eos officiis culpa, harum perferendis.
-                            Quisquam in possimus maiores recusandae cum dignissimos nulla culpa!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="gallery">
-            <div class="gallery__item">
-                <img src="images/9.jpg" alt="Изображение">
-                <h2 class="gallery_item-headline_mobile">Заголовок</h2>
-                <div class="gallery__item-details">
-                    <div class="gallery__item-info">
-                        <h2 class="gallery__item-headline">Заголовок</h2>
-                        <p class="gallery__item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                            saepe
-                            illo, consectetur, voluptatum accusamus ipsum odio eos officiis culpa, harum perferendis.
-                            Quisquam in possimus maiores recusandae cum dignissimos nulla culpa!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery__item">
-                <img src="images/10.jpg" alt="Изображение">
-                <h2 class="gallery_item-headline_mobile">Заголовок</h2>
-                <div class="gallery__item-details">
-                    <div class="gallery__item-info">
-                        <h2 class="gallery__item-headline">Заголовок</h2>
-                        <p class="gallery__item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                            saepe
-                            illo, consectetur, voluptatum accusamus ipsum odio eos officiis culpa, harum perferendis.
-                            Quisquam in possimus maiores recusandae cum dignissimos nulla culpa!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery__item">
-                <img src="images/11.jpg" alt="Изображение">
-                <h2 class="gallery_item-headline_mobile">Заголовок</h2>
-                <div class="gallery__item-details">
-                    <div class="gallery__item-info">
-                        <h2 class="gallery__item-headline">Заголовок</h2>
-                        <p class="gallery__item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                            saepe
-                            illo, consectetur, voluptatum accusamus ipsum odio eos officiis culpa, harum perferendis.
-                            Quisquam in possimus maiores recusandae cum dignissimos nulla culpa!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery__item">
-                <img src="images/12.jpg" alt="Изображение">
-                <h2 class="gallery_item-headline_mobile">Заголовок</h2>
-                <div class="gallery__item-details">
-                    <div class="gallery__item-info">
-                        <h2 class="gallery__item-headline">Заголовок</h2>
-                        <p class="gallery__item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                            saepe
-                            illo, consectetur, voluptatum accusamus ipsum odio eos officiis culpa, harum perferendis.
-                            Quisquam in possimus maiores recusandae cum dignissimos nulla culpa!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery__item">
-                <img src="images/13.jpg" alt="Изображение">
-                <h2 class="gallery_item-headline_mobile">Заголовок</h2>
-                <div class="gallery__item-details">
-                    <div class="gallery__item-info">
-                        <h2 class="gallery__item-headline">Заголовок</h2>
-                        <p class="gallery__item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                            saepe
-                            illo, consectetur, voluptatum accusamus ipsum odio eos officiis culpa, harum perferendis.
-                            Quisquam in possimus maiores recusandae cum dignissimos nulla culpa!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery__item">
-                <img src="images/14.jpg" alt="Изображение">
-                <h2 class="gallery_item-headline_mobile">Заголовок</h2>
-                <div class="gallery__item-details">
-                    <div class="gallery__item-info">
-                        <h2 class="gallery__item-headline">Заголовок</h2>
-                        <p class="gallery__item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                            saepe
-                            illo, consectetur, voluptatum accusamus ipsum odio eos officiis culpa, harum perferendis.
-                            Quisquam in possimus maiores recusandae cum dignissimos nulla culpa!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery__item">
-                <img src="images/15.jpg" alt="Изображение">
-                <h2 class="gallery_item-headline_mobile">Заголовок</h2>
-                <div class="gallery__item-details">
-                    <div class="gallery__item-info">
-                        <h2 class="gallery__item-headline">Заголовок</h2>
-                        <p class="gallery__item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                            saepe
-                            illo, consectetur, voluptatum accusamus ipsum odio eos officiis culpa, harum perferendis.
-                            Quisquam in possimus maiores recusandae cum dignissimos nulla culpa!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery__item">
-                <img src="images/16.jpg" alt="Изображение">
-                <h2 class="gallery_item-headline_mobile">Заголовок</h2>
-                <div class="gallery__item-details">
-                    <div class="gallery__item-info">
-                        <h2 class="gallery__item-headline">Заголовок</h2>
-                        <p class="gallery__item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                            saepe
-                            illo, consectetur, voluptatum accusamus ipsum odio eos officiis culpa, harum perferendis.
-                            Quisquam in possimus maiores recusandae cum dignissimos nulla culpa!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery__item">
-                <img src="images/17.jpg" alt="Изображение">
-                <h2 class="gallery_item-headline_mobile">Заголовок</h2>
-                <div class="gallery__item-details">
-                    <div class="gallery__item-info">
-                        <h2 class="gallery__item-headline">Заголовок</h2>
-                        <p class="gallery__item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                            saepe
-                            illo, consectetur, voluptatum accusamus ipsum odio eos officiis culpa, harum perferendis.
-                            Quisquam in possimus maiores recusandae cum dignissimos nulla culpa!
-
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                            saepe
-                            illo, consectetur, voluptatum accusamus ipsum odio eos officiis culpa, harum perferendis.
-                            Quisquam in possimus maiores recusandae cum dignissimos nulla culpa!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="gallery">
-            <div class="gallery__item">
-                <img src="images/18.jpg" alt="Изображение">
-                <h2 class="gallery_item-headline_mobile">Заголовок</h2>
-                <div class="gallery__item-details">
-                    <div class="gallery__item-info">
-                        <h2 class="gallery__item-headline">Заголовок</h2>
-                        <p class="gallery__item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                            saepe
-                            illo, consectetur, voluptatum accusamus ipsum odio eos officiis culpa, harum perferendis.
-                            Quisquam in possimus maiores recusandae cum dignissimos nulla culpa!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery__item">
-                <img src="images/19.jpg" alt="Изображение">
-                <h2 class="gallery_item-headline_mobile">Заголовок</h2>
-                <div class="gallery__item-details">
-                    <div class="gallery__item-info">
-                        <h2 class="gallery__item-headline">Заголовок</h2>
-                        <p class="gallery__item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                            saepe
-                            illo, consectetur, voluptatum accusamus ipsum odio eos officiis culpa, harum perferendis.
-                            Quisquam in possimus maiores recusandae cum dignissimos nulla culpa!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery__item">
-                <img src="images/20.jpg" alt="Изображение">
-                <h2 class="gallery_item-headline_mobile">Заголовок</h2>
-                <div class="gallery__item-details">
-                    <div class="gallery__item-info">
-                        <h2 class="gallery__item-headline">Заголовок</h2>
-                        <p class="gallery__item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                            saepe
-                            illo, consectetur, voluptatum accusamus ipsum odio eos officiis culpa, harum perferendis.
-                            Quisquam in possimus maiores recusandae cum dignissimos nulla culpa!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery__item">
-                <img src="images/21.jpg" alt="Изображение">
-                <h2 class="gallery_item-headline_mobile">Заголовок</h2>
-                <div class="gallery__item-details">
-                    <div class="gallery__item-info">
-                        <h2 class="gallery__item-headline">Заголовок</h2>
-                        <p class="gallery__item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                            saepe
-                            illo, consectetur, voluptatum accusamus ipsum odio eos officiis culpa, harum perferendis.
-                            Quisquam in possimus maiores recusandae cum dignissimos nulla culpa!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="gallery"></div>
+        <div class="gallery"></div>
+        <div class="gallery"></div>
     </main>
     <footer class="footer">
         <nav class="footer__nav">
             <ul class="footer__items">
-                <li class="footer__item"><a href="#">Портреты</a></li>
-                <li class="footer__item"><a href="#">Пейзажи</a></li>
-                <li class="footer__item"><a href="#">Графика</a></li>
-                <li class="footer__item"><a href="#">Скульптуры</a></li>
-                <li class="footer__item"><a href="#">Настенная живопись</a></li>
-                <li class="footer__item"><a href="#">Обо мне 🎨</a></li>
+                <li class="footer__item"><a href="portraits.html">Портреты</a></li>
+                <li class="footer__item"><a href="landscapes.html">Пейзажи</a></li>
+                <li class="footer__item"><a href="graphics.html">Графика</a></li>
+                <li class="footer__item"><a href="sculptures.html">Скульптуры</a></li>
+                <li class="footer__item"><a href="murals.html">Настенная живопись</a></li>
+                <li class="footer__item"><a href="about.html">Обо мне 🎨</a></li>
             </ul>
         </nav>
     </footer>
-</body>
 
-<svg style="display:none">
-    <symbol id="main-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204.000000 170.000000"
-        preserveAspectRatio="xMidYMid meet">
-        <g transform="translate(0.000000,170.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
-            <path d="M1559 1655 c-44 -24 -45 -46 -5 -80 19 -16 38 -42 41 -57 6 -24 1
--33 -31 -60 -91 -78 -144 -158 -144 -220 0 -18 -5 -28 -14 -28 -25 0 -46 -30
--46 -65 0 -22 13 -53 40 -93 36 -53 40 -66 40 -120 0 -41 5 -63 15 -72 11 -9
-15 -33 15 -89 0 -145 -50 -249 -141 -295 l-54 -27 -5 33 c-6 36 -36 58 -82 58
--32 0 -71 38 -62 60 3 8 8 32 11 53 3 20 9 37 13 37 4 0 28 18 53 41 117 102
-165 340 110 539 -45 165 -204 242 -363 177 -70 -28 -75 -48 -16 -76 24 -12 63
--42 85 -66 36 -39 41 -51 41 -90 0 -50 -10 -77 -43 -113 l-21 -22 -17 70 c-23
-89 -59 150 -129 222 -89 89 -306 219 -343 205 -37 -14 -28 -359 13 -490 11
--34 20 -63 20 -64 0 -1 -26 10 -58 25 -114 53 -237 28 -333 -68 -79 -79 -102
--160 -56 -197 18 -14 21 -24 16 -43 -12 -44 -9 -80 9 -98 9 -10 23 -30 31 -45
-8 -15 24 -30 35 -33 21 -7 36 -22 36 -37 0 -5 -9 -5 -20 -2 -23 7 -123 -35
--157 -67 -48 -45 -18 -105 72 -147 70 -33 117 -24 135 25 8 21 16 24 62 24 46
-0 55 -4 78 -31 17 -21 35 -31 53 -31 30 0 67 27 67 49 0 19 638 18 693 -1 52
--19 75 -42 87 -87 13 -49 4 -86 -26 -106 -35 -23 -54 -3 -54 57 0 58 -25 86
--67 75 -15 -3 -53 -10 -84 -14 -31 -3 -64 -12 -72 -19 -27 -23 -31 -69 -9
--110 10 -20 22 -49 25 -64 15 -60 63 -75 108 -32 l26 25 52 -17 c96 -31 166
--5 209 77 30 58 28 149 -6 196 l-22 31 33 21 c46 28 123 112 144 155 20 42 51
-48 84 15 27 -27 21 -32 -20 -16 -29 11 -34 10 -47 -7 -8 -11 -14 -27 -14 -37
-0 -9 -10 -19 -23 -23 -13 -3 -29 -16 -36 -30 -19 -35 -7 -71 29 -86 25 -10 34
--10 54 4 14 9 32 13 40 10 30 -12 64 5 71 34 3 15 17 50 30 77 29 57 30 66 9
-110 -14 31 -14 36 1 59 13 19 14 29 5 46 -6 12 -8 34 -5 51 6 27 8 28 28 14
-30 -21 70 -19 99 5 64 49 135 212 123 277 -3 18 -17 46 -32 63 -19 23 -23 34
--14 43 21 21 12 45 -19 52 -39 9 -54 32 -78 123 -22 80 -54 125 -108 148 -30
-13 -31 16 -27 57 7 55 -19 112 -58 132 -34 18 -47 18 -80 0z m88 -66 c14 -27
-16 -68 5 -86 -5 -8 -12 4 -20 32 -7 28 -21 51 -37 61 -19 12 -23 19 -14 25 19
-11 52 -5 66 -32z m-1023 -104 c156 -89 238 -166 288 -273 57 -119 48 -242 -22
--312 -54 -54 -94 -60 -165 -26 -119 59 -189 216 -196 441 -3 132 0 215 9 215
-4 0 43 -20 86 -45z m1041 -45 c55 0 117 -68 129 -142 9 -53 41 -115 68 -129
-19 -10 20 -12 4 -21 -11 -6 -29 -5 -51 2 -31 10 -38 9 -61 -9 -23 -18 -74 -30
--74 -17 0 2 18 22 40 44 36 35 40 45 40 88 0 105 -91 174 -169 128 -36 -21
--70 -72 -87 -133 -8 -27 -22 -55 -30 -61 -12 -11 -14 -6 -14 27 0 59 44 138
-104 185 28 22 53 45 55 50 2 6 7 6 14 -1 6 -6 20 -11 32 -11z m-534 -21 c52
--16 109 -69 109 -103 0 -42 -32 -66 -89 -66 -42 0 -51 3 -56 21 -4 12 -23 39
--42 60 -29 32 -34 43 -28 69 6 25 11 30 37 30 17 0 48 -5 69 -11z m567 -95
-c45 -50 16 -134 -58 -164 -33 -14 -38 -31 -15 -50 12 -10 13 -16 3 -28 -7 -8
--15 -37 -18 -64 l-5 -50 -24 33 c-26 35 -30 70 -17 131 6 29 4 40 -11 55 -22
-22 -17 62 14 115 36 61 87 70 131 22z m-415 -100 c10 -60 -14 -89 -33 -39 -11
-30 -36 24 -44 -11 -8 -30 -24 -31 -28 -2 -4 33 -32 34 -47 1 -13 -26 -14 -27
--21 -8 -13 34 -1 45 51 45 37 0 54 6 76 25 15 13 31 25 34 25 4 0 9 -16 12
--36z m152 -84 c19 -37 33 -38 61 -2 28 34 37 26 22 -20 -14 -46 -4 -96 27
--138 34 -46 33 -63 -1 -48 -23 11 -29 10 -45 -11 l-19 -23 0 55 c0 46 -5 63
--34 104 -37 54 -50 88 -41 103 9 15 13 13 30 -20z m-163 -31 c15 -4 15 -7 1
--39 l-15 -35 -10 25 c-6 14 -14 32 -18 41 -10 20 -1 32 14 20 6 -5 19 -10 28
--12z m-75 -3 c4 -3 0 -18 -7 -33 l-13 -28 -11 28 c-11 31 -31 35 -57 11 -24
--21 -54 -11 -40 13 7 14 21 18 66 16 31 -1 59 -4 62 -7z m608 -36 c0 -18 -6
--26 -23 -28 -24 -4 -38 18 -28 44 3 9 15 14 28 12 17 -2 23 -10 23 -28z m93
-13 c5 -17 -26 -29 -40 -15 -6 6 -7 15 -3 22 9 14 37 9 43 -7z m-198 -33 c0
--11 -6 -20 -14 -20 -18 0 -29 16 -21 30 11 18 35 11 35 -10z m-645 -13 c23
--18 4 -31 -31 -23 -21 6 -24 9 -14 21 15 18 21 19 45 2z m-622 -14 c26 -7 10
--23 -24 -23 -62 0 -102 -28 -207 -143 -43 -48 -78 -60 -88 -32 -16 40 59 141
-130 177 68 35 118 41 189 21z m1515 0 c5 -17 -26 -29 -40 -15 -6 6 -7 15 -3
-22 9 14 37 9 43 -7z m-771 -13 c25 0 23 -10 -10 -55 -18 -24 -26 -18 -37 29
--8 38 -3 53 14 36 5 -5 21 -10 33 -10z m683 -12 c0 -15 -32 -21 -40 -7 -13 20
-9 43 26 28 8 -6 14 -16 14 -21z m-576 -25 c-9 -52 -15 -59 -31 -38 -27 38 -15
-67 30 74 4 0 5 -16 1 -36z m474 14 c2 -12 -3 -17 -17 -17 -12 0 -21 6 -21 13
-0 31 32 34 38 4z m-70 -14 c5 -18 -28 -29 -38 -12 -5 7 -6 17 -3 22 7 12 35 5
-41 -10z m-584 -40 c20 -49 40 -54 75 -22 l23 22 24 -29 c30 -37 30 -43 -6 -92
--34 -47 -41 -51 -33 -22 6 23 -15 27 -49 9 -25 -13 -35 -5 -18 16 7 8 10 22 6
-30 -5 14 -9 14 -37 0 -33 -17 -51 -13 -31 7 7 7 12 21 12 31 0 15 -5 18 -20
-13 -68 -21 -67 -21 -47 1 29 34 13 68 -20 41 -15 -11 -16 -11 -10 5 4 10 7 22
-7 27 0 4 24 7 53 6 53 -1 54 -1 71 -43z m-529 24 c1 -1 11 -14 22 -30 25 -33
-21 -58 -13 -74 -23 -11 -28 -9 -49 15 -13 15 -34 45 -46 66 l-22 39 54 -7 c29
--4 54 -8 54 -9z m-138 -13 c2 -6 -10 -14 -27 -17 -43 -9 -123 -88 -153 -150
--56 -119 -130 -161 -112 -63 5 24 31 59 93 124 48 49 101 97 117 106 33 17 76
-17 82 0z m1481 -1 c5 -17 -26 -29 -40 -15 -6 6 -7 15 -3 22 9 14 37 9 43 -7z
-m-93 -14 c0 -7 -8 -15 -17 -17 -18 -3 -25 18 -11 32 10 10 28 1 28 -15z m-87
--22 c4 -22 -27 -35 -38 -16 -10 15 7 42 24 36 6 -2 12 -11 14 -20z m-68 3 c0
--5 -2 -10 -4 -10 -3 0 -8 5 -11 10 -3 6 -1 10 4 10 6 0 11 -4 11 -10z m-40 -9
-c0 -5 16 -30 35 -55 19 -26 35 -48 35 -50 0 -9 -40 7 -51 20 -6 8 -22 14 -35
-14 -20 0 -24 5 -24 28 0 27 15 52 32 52 4 0 8 -4 8 -9z m-1152 -23 c19 -19 14
--25 -22 -32 -46 -9 -108 -71 -147 -148 -40 -81 -56 -98 -91 -98 -36 0 -36 15
-3 47 16 14 45 56 64 93 55 110 152 179 193 138z m1076 -59 c24 -173 -45 -322
--191 -416 -29 -18 -53 -37 -53 -42 0 -4 9 -16 21 -27 54 -48 64 -145 22 -202
--33 -45 -69 -57 -128 -43 -102 24 -100 24 -126 -3 -27 -29 -44 -33 -53 -11 -8
-21 29 55 59 55 25 0 25 2 19 48 -5 37 -2 51 10 61 24 20 36 4 36 -49 0 -41 4
--52 26 -69 32 -25 45 -26 85 -5 60 31 74 128 29 201 -11 18 -39 42 -62 55 -42
-22 -52 23 -403 28 -349 5 -413 12 -320 34 19 4 57 27 83 51 l47 43 -29 31
-c-28 29 -29 31 -8 31 12 0 31 -13 43 -30 20 -27 26 -29 62 -23 26 4 38 3 34
--4 -4 -6 -24 -13 -45 -16 -44 -8 -96 -55 -90 -84 3 -17 21 -18 331 -21 316 -2
-329 -2 378 19 115 50 179 171 179 339 0 49 3 96 6 105 13 32 29 7 38 -56z
-m322 50 c10 -17 -23 -46 -37 -32 -7 7 -9 19 -6 27 7 18 33 21 43 5z m-917 -14
-c32 -30 79 -65 88 -65 5 0 16 -9 26 -20 9 -11 26 -20 37 -20 34 0 22 -27 -20
--44 -70 -28 -115 -15 -78 22 20 20 -7 40 -32 24 -11 -6 -28 -12 -37 -12 -16 1
--15 3 5 19 12 11 22 27 22 36 0 17 -16 17 -67 -2 -15 -5 -14 -2 5 19 15 17 20
-28 13 33 -13 7 -5 25 11 25 6 0 18 -7 27 -15z m-234 -35 c4 -6 1 -17 -5 -25
--7 -8 -10 -24 -7 -35 10 -38 -16 -40 -66 -4 -63 46 -65 78 -2 54 31 -12 46 10
-24 37 -13 15 -12 15 18 0 17 -9 35 -22 38 -27z m1051 29 c10 -17 -13 -36 -27
--22 -12 12 -4 33 11 33 5 0 12 -5 16 -11z m-1234 -56 c24 -22 23 -33 -5 -33
--31 0 -109 -50 -134 -86 -11 -16 -34 -57 -51 -91 -30 -58 -59 -82 -82 -68 -18
-11 -10 47 16 67 14 11 36 45 49 75 14 30 34 68 46 84 44 62 122 88 161 52z
-m315 -19 c18 -20 33 -42 33 -49 0 -8 16 -19 35 -25 20 -7 32 -16 29 -22 -9
--14 -143 -3 -186 16 l-33 14 32 1 c37 1 53 19 30 36 -14 10 -14 12 1 23 16 10
-16 12 -2 27 -19 15 -19 15 4 15 14 0 37 -14 57 -36z m963 21 c0 -8 -7 -15 -15
--15 -16 0 -20 12 -8 23 11 12 23 8 23 -8z m-196 -14 c3 -5 -1 -14 -9 -21 -13
--10 -15 -9 -15 9 0 21 14 28 24 12z m56 -46 c0 -8 -4 -15 -9 -15 -5 0 -18 -3
--28 -7 -17 -6 -17 -5 1 15 22 26 36 28 36 7z m-998 -47 c45 -22 70 -42 78 -60
-6 -14 25 -38 41 -52 33 -30 35 -38 14 -56 -8 -7 -15 -25 -15 -41 0 -29 0 -29
--62 -29 -58 1 -61 2 -44 15 11 8 32 15 46 15 36 0 64 32 56 63 -6 26 -47 50
--71 41 -8 -3 -28 5 -45 19 -39 33 -61 40 -94 28 -30 -12 -34 -44 -11 -75 22
--29 19 -40 -17 -60 -30 -19 -31 -19 -44 0 -26 38 -35 44 -65 44 -32 0 -79 -38
--79 -65 0 -12 -13 -15 -60 -15 -33 0 -60 4 -60 8 0 5 13 7 29 4 43 -6 74 21
-111 96 74 153 155 187 292 120z m1008 -17 c0 -16 -19 -23 -43 -15 -21 7 -21 7
--2 15 28 11 45 11 45 0z m-590 -17 c0 -3 -5 -14 -10 -25 -12 -22 -41 -25 -73
--7 -21 11 -20 12 18 24 45 14 65 17 65 8z m-191 -30 c1 -1 0 -7 -4 -13 -11
--19 -71 -13 -91 10 l-18 20 54 -7 c30 -4 57 -8 59 -10z m749 -20 c23 -15 47
--62 38 -72 -3 -3 -10 7 -15 21 -10 26 -56 57 -86 57 -8 0 -15 5 -15 11 0 14
-46 4 78 -17z m-636 -30 c18 -10 28 -21 26 -32 -4 -18 -8 -18 -74 -4 -63 14
--68 20 -38 52 24 24 29 26 42 14 7 -8 27 -21 44 -30z m-84 -69 c61 -11 75 -16
-65 -26 -6 -6 -24 -4 -46 6 -44 18 -89 19 -105 3 -8 -8 -12 -8 -12 -1 0 6 7 13
-15 17 8 3 15 16 15 28 l0 22 15 -21 c9 -13 31 -25 53 -28z m220 0 c59 -11 75
--16 65 -26 -4 -4 -29 -1 -55 9 -39 14 -53 15 -79 5 l-32 -12 20 22 c11 12 18
-29 16 37 -3 8 2 5 11 -7 10 -13 32 -25 54 -28z m-685 -17 c2 -7 -6 -26 -17
--41 -20 -27 -20 -29 -3 -58 9 -17 15 -35 11 -40 -9 -15 -33 -10 -44 10 -14 27
--13 114 2 129 16 16 45 15 51 0z m1137 -8 c0 -12 41 -14 56 -2 5 4 1 0 -8 -10
--10 -9 -18 -28 -18 -42 0 -37 -18 -32 -36 9 -17 40 -18 55 -4 55 6 0 10 -4 10
--10z m-1452 -28 c-2 -11 3 -26 11 -35 12 -15 11 -17 -4 -17 -14 0 -16 -6 -11
--30 6 -33 4 -35 -25 -19 -19 10 -20 12 -4 29 18 20 22 46 10 73 -5 12 -2 17
-10 17 10 0 15 -7 13 -18z m62 -12 c0 -5 -2 -10 -4 -10 -3 0 -8 5 -11 10 -3 6
--1 10 4 10 6 0 11 -4 11 -10z m-120 -19 c0 -12 -29 -35 -36 -28 -11 10 5 37
-21 37 8 0 15 -4 15 -9z m1457 -7 c8 -20 -8 -36 -26 -25 -15 10 -8 41 9 41 6 0
-13 -7 17 -16z m-1219 -11 c-16 -2 -40 -2 -55 0 -16 2 -3 4 27 4 30 0 43 -2 28
--4z m-118 -33 c0 -5 -5 -10 -11 -10 -5 0 -7 5 -4 10 3 6 8 10 11 10 2 0 4 -4
-4 -10z m860 -170 c0 -24 -6 -33 -26 -40 -33 -13 -32 -13 -44 10 -16 30 4 60
-40 60 27 0 30 -3 30 -30z" />
-            <path d="M560 1475 c-10 -12 -11 -46 -6 -140 11 -214 48 -349 108 -400 37 -31
-101 -49 147 -40 49 9 107 69 115 120 11 61 -24 157 -86 239 -49 66 -176 183
--237 219 -26 15 -30 15 -41 2z m154 -147 c59 -55 78 -79 73 -91 -10 -26 -22
--21 -51 23 -14 22 -45 54 -69 71 -23 17 -47 40 -54 52 -32 58 -3 42 101 -55z
-m-56 -44 c41 -35 52 -54 32 -54 -13 0 -90 70 -90 82 0 16 17 8 58 -28z m-18
--76 c0 -5 -9 -8 -20 -8 -13 0 -20 7 -20 20 0 18 2 19 20 8 11 -7 20 -16 20
--20z m205 -39 l16 -30 -25 17 c-14 9 -26 23 -26 30 0 24 19 15 35 -17z m-95 6
-c15 -18 6 -45 -15 -45 -16 0 -36 39 -28 53 7 12 30 8 43 -8z m-98 -32 c26 -23
-23 -43 -7 -43 -21 0 -25 5 -25 30 0 34 6 37 32 13z m171 -30 c13 -15 13 -21 2
--37 -18 -24 -35 -12 -35 25 0 33 10 37 33 12z m-85 -35 c7 -7 12 -20 12 -31 0
--30 -34 -16 -38 16 -4 29 6 35 26 15z m-74 -60 c-4 -6 -10 -5 -15 3 -14 22
--10 33 6 19 8 -7 12 -17 9 -22z m210 7 c8 -33 -4 -57 -15 -29 -11 27 -11 54 0
-54 5 0 12 -11 15 -25z m-54 -66 c0 -26 -17 -24 -25 4 -18 61 -18 64 4 38 12
--13 21 -32 21 -42z m-85 9 c9 -14 11 -24 5 -26 -14 -5 -40 17 -40 34 0 21 17
-17 35 -8z" />
-            <path d="M1114 1376 c-8 -21 3 -36 27 -36 15 0 20 6 17 22 -4 27 -35 37 -44
-14z" />
-        </g>
-    </symbol>
-</svg>
+    <svg style="display:none">
+        <symbol id="main-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204.000000 170.000000"
+            preserveAspectRatio="xMidYMid meet">
+            <g transform="translate(0.000000,170.000000) scale(0.100000,-0.100000)" fill="currentColor" stroke="none">
+                <path d="M1559 1655 c-44 -24 -45 -46 -5 -80 19 -16 38 -42 41 -57 6 -24 1
+    -33 -31 -60 -91 -78 -144 -158 -144 -220 0 -18 -5 -28 -14 -28 -25 0 -46 -30
+    -46 -65 0 -22 13 -53 40 -93 36 -53 40 -66 40 -120 0 -41 5 -63 15 -72 11 -9
+    15 -33 15 -89 0 -145 -50 -249 -141 -295 l-54 -27 -5 33 c-6 36 -36 58 -82 58
+    -32 0 -71 38 -62 60 3 8 8 32 11 53 3 20 9 37 13 37 4 0 28 18 53 41 117 102
+    165 340 110 539 -45 165 -204 242 -363 177 -70 -28 -75 -48 -16 -76 24 -12 63
+    -42 85 -66 36 -39 41 -51 41 -90 0 -50 -10 -77 -43 -113 l-21 -22 -17 70 c-23
+    89 -59 150 -129 222 -89 89 -306 219 -343 205 -37 -14 -28 -359 13 -490 11
+    -34 20 -63 20 -64 0 -1 -26 10 -58 25 -114 53 -237 28 -333 -68 -79 -79 -102
+    -160 -56 -197 18 -14 21 -24 16 -43 -12 -44 -9 -80 9 -98 9 -10 23 -30 31 -45
+    8 -15 24 -30 35 -33 21 -7 36 -22 36 -37 0 -5 -9 -5 -20 -2 -23 7 -123 -35
+    -157 -67 -48 -45 -18 -105 72 -147 70 -33 117 -24 135 25 8 21 16 24 62 24 46
+    0 55 -4 78 -31 17 -21 35 -31 53 -31 30 0 67 27 67 49 0 19 638 18 693 -1 52
+    -19 75 -42 87 -87 13 -49 4 -86 -26 -106 -35 -23 -54 -3 -54 57 0 58 -25 86
+    -67 75 -15 -3 -53 -10 -84 -14 -31 -3 -64 -12 -72 -19 -27 -23 -31 -69 -9
+    -110 10 -20 22 -49 25 -64 15 -60 63 -75 108 -32 l26 25 52 -17 c96 -31 166
+    -5 209 77 30 58 28 149 -6 196 l-22 31 33 21 c46 28 123 112 144 155 20 42 51
+    48 84 15 27 -27 21 -32 -20 -16 -29 11 -34 10 -47 -7 -8 -11 -14 -27 -14 -37
+    0 -9 -10 -19 -23 -23 -13 -3 -29 -16 -36 -30 -19 -35 -7 -71 29 -86 25 -10 34
+    -10 54 4 14 9 32 13 40 10 30 -12 64 5 71 34 3 15 17 50 30 77 29 57 30 66 9
+    110 -14 31 -14 36 1 59 13 19 14 29 5 46 -6 12 -8 34 -5 51 6 27 8 28 28 14
+    30 -21 70 -19 99 5 64 49 135 212 123 277 -3 18 -17 46 -32 63 -19 23 -23 34
+    -14 43 21 21 12 45 -19 52 -39 9 -54 32 -78 123 -22 80 -54 125 -108 148 -30
+    13 -31 16 -27 57 7 55 -19 112 -58 132 -34 18 -47 18 -80 0z m88 -66 c14 -27
+    16 -68 5 -86 -5 -8 -12 4 -20 32 -7 28 -21 51 -37 61 -19 12 -23 19 -14 25 19
+    11 52 -5 66 -32z m-1023 -104 c156 -89 238 -166 288 -273 57 -119 48 -242 -22
+    -312 -54 -54 -94 -60 -165 -26 -119 59 -189 216 -196 441 -3 132 0 215 9 215
+    4 0 43 -20 86 -45z m1041 -45 c55 0 117 -68 129 -142 9 -53 41 -115 68 -129
+    19 -10 20 -12 4 -21 -11 -6 -29 -5 -51 2 -31 10 -38 9 -61 -9 -23 -18 -74 -30
+    -74 -17 0 2 18 22 40 44 36 35 40 45 40 88 0 105 -91 174 -169 128 -36 -21
+    -70 -72 -87 -133 -8 -27 -22 -55 -30 -61 -12 -11 -14 -6 -14 27 0 59 44 138
+    104 185 28 22 53 45 55 50 2 6 7 6 14 -1 6 -6 20 -11 32 -11z m-534 -21 c52
+    -16 109 -69 109 -103 0 -42 -32 -66 -89 -66 -42 0 -51 3 -56 21 -4 12 -23 39
+    -42 60 -29 32 -34 43 -28 69 6 25 11 30 37 30 17 0 48 -5 69 -11z m567 -95
+    c45 -50 16 -134 -58 -164 -33 -14 -38 -31 -15 -50 12 -10 13 -16 3 -28 -7 -8
+    -15 -37 -18 -64 l-5 -50 -24 33 c-26 35 -30 70 -17 131 6 29 4 40 -11 55 -22
+    22 -17 62 14 115 36 61 87 70 131 22z m-415 -100 c10 -60 -14 -89 -33 -39 -11
+    30 -36 24 -44 -11 -8 -30 -24 -31 -28 -2 -4 33 -32 34 -47 1 -13 -26 -14 -27
+    -21 -8 -13 34 -1 45 51 45 37 0 54 6 76 25 15 13 31 25 34 25 4 0 9 -16 12
+    -36z m152 -84 c19 -37 33 -38 61 -2 28 34 37 26 22 -20 -14 -46 -4 -96 27
+    -138 34 -46 33 -63 -1 -48 -23 11 -29 10 -45 -11 l-19 -23 0 55 c0 46 -5 63
+    -34 104 -37 54 -50 88 -41 103 9 15 13 13 30 -20z m-163 -31 c15 -4 15 -7 1
+    -39 l-15 -35 -10 25 c-6 14 -14 32 -18 41 -10 20 -1 32 14 20 6 -5 19 -10 28
+    -12z m-75 -3 c4 -3 0 -18 -7 -33 l-13 -28 -11 28 c-11 31 -31 35 -57 11 -24
+    -21 -54 -11 -40 13 7 14 21 18 66 16 31 -1 59 -4 62 -7z m608 -36 c0 -18 -6
+    -26 -23 -28 -24 -4 -38 18 -28 44 3 9 15 14 28 12 17 -2 23 -10 23 -28z m93
+    13 c5 -17 -26 -29 -40 -15 -6 6 -7 15 -3 22 9 14 37 9 43 -7z m-198 -33 c0
+    -11 -6 -20 -14 -20 -18 0 -29 16 -21 30 11 18 35 11 35 -10z m-645 -13 c23
+    -18 4 -31 -31 -23 -21 6 -24 9 -14 21 15 18 21 19 45 2z m-622 -14 c26 -7 10
+    -23 -24 -23 -62 0 -102 -28 -207 -143 -43 -48 -78 -60 -88 -32 -16 40 59 141
+    130 177 68 35 118 41 189 21z m1515 0 c5 -17 -26 -29 -40 -15 -6 6 -7 15 -3
+    22 9 14 37 9 43 -7z m-771 -13 c25 0 23 -10 -10 -55 -18 -24 -26 -18 -37 29
+    -8 38 -3 53 14 36 5 -5 21 -10 33 -10z m683 -12 c0 -15 -32 -21 -40 -7 -13 20
+    9 43 26 28 8 -6 14 -16 14 -21z m-576 -25 c-9 -52 -15 -59 -31 -38 -27 38 -15
+    67 30 74 4 0 5 -16 1 -36z m474 14 c2 -12 -3 -17 -17 -17 -12 0 -21 6 -21 13
+    0 31 32 34 38 4z m-70 -14 c5 -18 -28 -29 -38 -12 -5 7 -6 17 -3 22 7 12 35 5
+    41 -10z m-584 -40 c20 -49 40 -54 75 -22 l23 22 24 -29 c30 -37 30 -43 -6 -92
+    -34 -47 -41 -51 -33 -22 6 23 -15 27 -49 9 -25 -13 -35 -5 -18 16 7 8 10 22 6
+    30 -5 14 -9 14 -37 0 -33 -17 -51 -13 -31 7 7 7 12 21 12 31 0 15 -5 18 -20
+    13 -68 -21 -67 -21 -47 1 29 34 13 68 -20 41 -15 -11 -16 -11 -10 5 4 10 7 22
+    7 27 0 4 24 7 53 6 53 -1 54 -1 71 -43z m-529 24 c1 -1 11 -14 22 -30 25 -33
+    21 -58 -13 -74 -23 -11 -28 -9 -49 15 -13 15 -34 45 -46 66 l-22 39 54 -7 c29
+    -4 54 -8 54 -9z m-138 -13 c2 -6 -10 -14 -27 -17 -43 -9 -123 -88 -153 -150
+    -56 -119 -130 -161 -112 -63 5 24 31 59 93 124 48 49 101 97 117 106 33 17 76
+    17 82 0z m1481 -1 c5 -17 -26 -29 -40 -15 -6 6 -7 15 -3 22 9 14 37 9 43 -7z
+    m-93 -14 c0 -7 -8 -15 -17 -17 -18 -3 -25 18 -11 32 10 10 28 1 28 -15z m-87
+    -22 c4 -22 -27 -35 -38 -16 -10 15 7 42 24 36 6 -2 12 -11 14 -20z m-68 3 c0
+    -5 -2 -10 -4 -10 -3 0 -8 5 -11 10 -3 6 -1 10 4 10 6 0 11 -4 11 -10z m-40 -9
+    c0 -5 16 -30 35 -55 19 -26 35 -48 35 -50 0 -9 -40 7 -51 20 -6 8 -22 14 -35
+    14 -20 0 -24 5 -24 28 0 27 15 52 32 52 4 0 8 -4 8 -9z m-1152 -23 c19 -19 14
+    -25 -22 -32 -46 -9 -108 -71 -147 -148 -40 -81 -56 -98 -91 -98 -36 0 -36 15
+    3 47 16 14 45 56 64 93 55 110 152 179 193 138z m1076 -59 c24 -173 -45 -322
+    -191 -416 -29 -18 -53 -37 -53 -42 0 -4 9 -16 21 -27 54 -48 64 -145 22 -202
+    -33 -45 -69 -57 -128 -43 -102 24 -100 24 -126 -3 -27 -29 -44 -33 -53 -11 -8
+    21 29 55 59 55 25 0 25 2 19 48 -5 37 -2 51 10 61 24 20 36 4 36 -49 0 -41 4
+    -52 26 -69 32 -25 45 -26 85 -5 60 31 74 128 29 201 -11 18 -39 42 -62 55 -42
+    22 -52 23 -403 28 -349 5 -413 12 -320 34 19 4 57 27 83 51 l47 43 -29 31
+    c-28 29 -29 31 -8 31 12 0 31 -13 43 -30 20 -27 26 -29 62 -23 26 4 38 3 34
+    -4 -4 -6 -24 -13 -45 -16 -44 -8 -96 -55 -90 -84 3 -17 21 -18 331 -21 316 -2
+    329 -2 378 19 115 50 179 171 179 339 0 49 3 96 6 105 13 32 29 7 38 -56z
+    m322 50 c10 -17 -23 -46 -37 -32 -7 7 -9 19 -6 27 7 18 33 21 43 5z m-917 -14
+    c32 -30 79 -65 88 -65 5 0 16 -9 26 -20 9 -11 26 -20 37 -20 34 0 22 -27 -20
+    -44 -70 -28 -115 -15 -78 22 20 20 -7 40 -32 24 -11 -6 -28 -12 -37 -12 -16 1
+    -15 3 5 19 12 11 22 27 22 36 0 17 -16 17 -67 -2 -15 -5 -14 -2 5 19 15 17 20
+    28 13 33 -13 7 -5 25 11 25 6 0 18 -7 27 -15z m-234 -35 c4 -6 1 -17 -5 -25
+    -7 -8 -10 -24 -7 -35 10 -38 -16 -40 -66 -4 -63 46 -65 78 -2 54 31 -12 46 10
+    24 37 -13 15 -12 15 18 0 17 -9 35 -22 38 -27z m1051 29 c10 -17 -13 -36 -27
+    -22 -12 12 -4 33 11 33 5 0 12 -5 16 -11z m-1234 -56 c24 -22 23 -33 -5 -33
+    -31 0 -109 -50 -134 -86 -11 -16 -34 -57 -51 -91 -30 -58 -59 -82 -82 -68 -18
+    11 -10 47 16 67 14 11 36 45 49 75 14 30 34 68 46 84 44 62 122 88 161 52z
+    m315 -19 c18 -20 33 -42 33 -49 0 -8 16 -19 35 -25 20 -7 32 -16 29 -22 -9
+    -14 -143 -3 -186 16 l-33 14 32 1 c37 1 53 19 30 36 -14 10 -14 12 1 23 16 10
+    16 12 -2 27 -19 15 -19 15 4 15 14 0 37 -14 57 -36z m963 21 c0 -8 -7 -15 -15
+    -15 -16 0 -20 12 -8 23 11 12 23 8 23 -8z m-196 -14 c3 -5 -1 -14 -9 -21 -13
+    -10 -15 -9 -15 9 0 21 14 28 24 12z m56 -46 c0 -8 -4 -15 -9 -15 -5 0 -18 -3
+    -28 -7 -17 -6 -17 -5 1 15 22 26 36 28 36 7z m-998 -47 c45 -22 70 -42 78 -60
+    6 -14 25 -38 41 -52 33 -30 35 -38 14 -56 -8 -7 -15 -25 -15 -41 0 -29 0 -29
+    -62 -29 -58 1 -61 2 -44 15 11 8 32 15 46 15 36 0 64 32 56 63 -6 26 -47 50
+    -71 41 -8 -3 -28 5 -45 19 -39 33 -61 40 -94 28 -30 -12 -34 -44 -11 -75 22
+    -29 19 -40 -17 -60 -30 -19 -31 -19 -44 0 -26 38 -35 44 -65 44 -32 0 -79 -38
+    -79 -65 0 -12 -13 -15 -60 -15 -33 0 -60 4 -60 8 0 5 13 7 29 4 43 -6 74 21
+    111 96 74 153 155 187 292 120z m1008 -17 c0 -16 -19 -23 -43 -15 -21 7 -21 7
+    -2 15 28 11 45 11 45 0z m-590 -17 c0 -3 -5 -14 -10 -25 -12 -22 -41 -25 -73
+    -7 -21 11 -20 12 18 24 45 14 65 17 65 8z m-191 -30 c1 -1 0 -7 -4 -13 -11
+    -19 -71 -13 -91 10 l-18 20 54 -7 c30 -4 57 -8 59 -10z m749 -20 c23 -15 47
+    -62 38 -72 -3 -3 -10 7 -15 21 -10 26 -56 57 -86 57 -8 0 -15 5 -15 11 0 14
+    46 4 78 -17z m-636 -30 c18 -10 28 -21 26 -32 -4 -18 -8 -18 -74 -4 -63 14
+    -68 20 -38 52 24 24 29 26 42 14 7 -8 27 -21 44 -30z m-84 -69 c61 -11 75 -16
+    65 -26 -6 -6 -24 -4 -46 6 -44 18 -89 19 -105 3 -8 -8 -12 -8 -12 -1 0 6 7 13
+    15 17 8 3 15 16 15 28 l0 22 15 -21 c9 -13 31 -25 53 -28z m220 0 c59 -11 75
+    -16 65 -26 -4 -4 -29 -1 -55 9 -39 14 -53 15 -79 5 l-32 -12 20 22 c11 12 18
+    29 16 37 -3 8 2 5 11 -7 10 -13 32 -25 54 -28z m-685 -17 c2 -7 -6 -26 -17
+    -41 -20 -27 -20 -29 -3 -58 9 -17 15 -35 11 -40 -9 -15 -33 -10 -44 10 -14 27
+    -13 114 2 129 16 16 45 15 51 0z m1137 -8 c0 -12 41 -14 56 -2 5 4 1 0 -8 -10
+    -10 -9 -18 -28 -18 -42 0 -37 -18 -32 -36 9 -17 40 -18 55 -4 55 6 0 10 -4 10
+    -10z m-1452 -28 c-2 -11 3 -26 11 -35 12 -15 11 -17 -4 -17 -14 0 -16 -6 -11
+    -30 6 -33 4 -35 -25 -19 -19 10 -20 12 -4 29 18 20 22 46 10 73 -5 12 -2 17
+    10 17 10 0 15 -7 13 -18z m62 -12 c0 -5 -2 -10 -4 -10 -3 0 -8 5 -11 10 -3 6
+    -1 10 4 10 6 0 11 -4 11 -10z m-120 -19 c0 -12 -29 -35 -36 -28 -11 10 5 37
+    21 37 8 0 15 -4 15 -9z m1457 -7 c8 -20 -8 -36 -26 -25 -15 10 -8 41 9 41 6 0
+    13 -7 17 -16z m-1219 -11 c-16 -2 -40 -2 -55 0 -16 2 -3 4 27 4 30 0 43 -2 28
+    -4z m-118 -33 c0 -5 -5 -10 -11 -10 -5 0 -7 5 -4 10 3 6 8 10 11 10 2 0 4 -4
+    4 -10z m860 -170 c0 -24 -6 -33 -26 -40 -33 -13 -32 -13 -44 10 -16 30 4 60
+    40 60 27 0 30 -3 30 -30z" />
+                <path d="M560 1475 c-10 -12 -11 -46 -6 -140 11 -214 48 -349 108 -400 37 -31
+    101 -49 147 -40 49 9 107 69 115 120 11 61 -24 157 -86 239 -49 66 -176 183
+    -237 219 -26 15 -30 15 -41 2z m154 -147 c59 -55 78 -79 73 -91 -10 -26 -22
+    -21 -51 23 -14 22 -45 54 -69 71 -23 17 -47 40 -54 52 -32 58 -3 42 101 -55z
+    m-56 -44 c41 -35 52 -54 32 -54 -13 0 -90 70 -90 82 0 16 17 8 58 -28z m-18
+    -76 c0 -5 -9 -8 -20 -8 -13 0 -20 7 -20 20 0 18 2 19 20 8 11 -7 20 -16 20
+    -20z m205 -39 l16 -30 -25 17 c-14 9 -26 23 -26 30 0 24 19 15 35 -17z m-95 6
+    c15 -18 6 -45 -15 -45 -16 0 -36 39 -28 53 7 12 30 8 43 -8z m-98 -32 c26 -23
+    23 -43 -7 -43 -21 0 -25 5 -25 30 0 34 6 37 32 13z m171 -30 c13 -15 13 -21 2
+    -37 -18 -24 -35 -12 -35 25 0 33 10 37 33 12z m-85 -35 c7 -7 12 -20 12 -31 0
+    -30 -34 -16 -38 16 -4 29 6 35 26 15z m-74 -60 c-4 -6 -10 -5 -15 3 -14 22
+    -10 33 6 19 8 -7 12 -17 9 -22z m210 7 c8 -33 -4 -57 -15 -29 -11 27 -11 54 0
+    54 5 0 12 -11 15 -25z m-54 -66 c0 -26 -17 -24 -25 4 -18 61 -18 64 4 38 12
+    -13 21 -32 21 -42z m-85 9 c9 -14 11 -24 5 -26 -14 -5 -40 17 -40 34 0 21 17
+    17 35 -8z" />
+                <path d="M1114 1376 c-8 -21 3 -36 27 -36 15 0 20 6 17 22 -4 27 -35 37 -44
+    14z" />
+            </g>
+        </symbol>
+    </svg>
+</body>
 
 </html>

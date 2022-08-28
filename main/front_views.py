@@ -34,8 +34,8 @@ def landscapes(request):
     return render(request, "landscapes.html")
 
 
-def graphic(request):
-    return render(request, "graphic.html")
+def graphics(request):
+    return render(request, "graphics.html")
 
 
 def sculptures(request):
