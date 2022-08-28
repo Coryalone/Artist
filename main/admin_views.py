@@ -67,7 +67,7 @@ def new_photos(request):
          'visible': x['raw_text'].lower().find('#главная') != -1,
          'category':  os.getenv('PORTRAITS') if x['raw_text'].lower().find('#портрет') != -1 else os.getenv('LANDSCAPES') if x['raw_text'].lower().find('#пейзаж') != -1 else \
          os.getenv('GRAPGIC') if x['raw_text'].lower().find('#графика') != -1 else os.getenv('SCULPTURES') if x['raw_text'].lower().find('#скульптур') != -1 else \
-         os.getenv('MURALS') if x['raw_text'].lower().find('#мурал') != -1 else os.getenv('DEFAULT')} for x in fresh_photos
+         os.getenv('MURALS') if x['raw_text'].lower().find('#настен') != -1 else os.getenv('DEFAULT')} for x in fresh_photos
     ])
 
     if formset.is_valid():
