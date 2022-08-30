@@ -1,4 +1,3 @@
-const imgURL = 'http://127.0.0.1:8000/api/category?n=2';
 const imageGallery = document.querySelectorAll('.gallery');
 
 function renderImage(imageURL, imageTitle, imageDescription) {
@@ -47,9 +46,10 @@ function renderImage(imageURL, imageTitle, imageDescription) {
     return [wrapper];
 }
 
-async function renderImagestoGallery() {
-    const responce = await fetch(imgURL);
-    const data = await responce.json();
+async function renderImagesToGallery(imgURL) {
+    const response = await fetch(imgURL);
+    let data = await response.json();
+    data = data.data
 
     const images = [];
 
@@ -84,4 +84,7 @@ async function renderImagestoGallery() {
     });
 }
 
-renderImagestoGallery();
+/* хак для синхронизации деферов( */
+if (window.renderImagesToGalleryLoad) {
+    renderImagesToGalleryLoad()
+}

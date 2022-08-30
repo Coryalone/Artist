@@ -16,6 +16,7 @@
     <script defer src="{% static 'js/main.js' %} "></script>
     <script defer src="{% static 'js/lazyload.js' %} "></script>
     <script defer src="{% static 'js/api.js' %}"></script>
+    <script defer >function renderImagesToGalleryLoad(){renderImagesToGallery('{% url 'api_main_page' %}');};if (window.renderImagesToGallery)renderImagesToGalleryLoad()</script>
 
 </head>
 

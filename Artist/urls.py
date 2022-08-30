@@ -23,7 +23,7 @@ from main.front_views import api_shuffled_main_page_photos, api_photos_by_catego
 urlpatterns = [
     path('new_photos/', new_photos, name='new_photos'),
     path('admin/', all_photos, name='all_photos'),
-    path('api/category', api_photos_by_category, name='api_category'),
+    path('api/<int:category>', api_photos_by_category, name='api_category'),
     path('api/main_page', api_shuffled_main_page_photos, name='api_main_page'),
     path('', main_page, name='main_page'),
     path('portraits', portraits, name='portraits'),

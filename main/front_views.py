@@ -1,3 +1,4 @@
+import os
 import random
 
 from django.http import JsonResponse
@@ -6,8 +7,7 @@ from django.shortcuts import render
 from main.models import Pictures
 
 
-def api_photos_by_category(request):
-    category = request.GET.get('n', '')
+def api_photos_by_category(request, category):
     filtered_photos = Pictures.objects.all().filter(category=category)
     response = [{'id_photo': x.id_photo, 'url_small': x.url_small, 'url_big': x.url_big,
          'name': x.name, 'description': x.description} for x in filtered_photos]
@@ -27,23 +27,23 @@ def main_page(request):
 
 
 def portraits(request):
-    return render(request, "portraits.html")
+    return render(request, "portraits.html", context={'key': os.getenv('PORTRAITS')})
 
 
 def landscapes(request):
-    return render(request, "landscapes.html")
+    return render(request, "landscapes.html", context={'key': os.getenv('LANDSCAPES')})
 
 
 def graphics(request):
-    return render(request, "graphics.html")
+    return render(request, "graphics.html", context={'key': os.getenv('GRAPGIC')})
 
 
 def sculptures(request):
-    return render(request, "sculptures.html")
+    return render(request, "sculptures.html", context={'key': os.getenv('SCULPTURES')})
 
 
 def murals(request):
-    return render(request, "murals.html")
+    return render(request, "murals.html", context={'key': os.getenv('MURALS')})
 
 
 def about(request):
