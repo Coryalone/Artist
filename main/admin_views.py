@@ -51,9 +51,16 @@ def get_fresh_photos(request):
         i += chunk_size
 
     all_ids = get_all_ids()
+    pocket = []
+    lol_count = 0
 
-    return [x for x in photos if x['id'] not in all_ids]
-
+    for x in photos:
+        if x['id'] not in all_ids:
+            pocket.append(x)
+            lol_count += 1
+            if lol_count >= 12:
+                break
+    return pocket
 
 def get_all_ids():
     return [x['id_photo'] for x in list(Pictures.objects.values('id_photo'))]
@@ -72,8 +79,9 @@ def new_photos(request):
 
     if formset.is_valid():
         for form in formset:
-            Pictures.objects.create(**form.cleaned_data)
+                Pictures.objects.create(**form.cleaned_data)
         return redirect('all_photos')
+
 
     context = {}
     context['formset'] = formset
