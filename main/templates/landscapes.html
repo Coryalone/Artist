@@ -47,18 +47,19 @@
             <ul>
                 <li class="header__item-mobile header__item-group-mobile"><a>Картины</a></li>
                 <li class="header__item-mobile header__item-mobile_active header__item-mobile_hidden">
-                    <a href="index.html">Главная</a>
+                    <a href="{% url 'main_page' %}">Главная</a>
                 </li>
                 <li class="header__item-mobile header__item-mobile_active header__item-mobile_hidden"><a
-                        href="portraits.html">Портреты</a></li>
-                <li class="header__item-mobile header__item-mobile_active header__item-mobile_hidden">Пейзажи</li>
+                        href="{% url 'portraits' %}">Портреты</a></li>
                 <li class="header__item-mobile header__item-mobile_active header__item-mobile_hidden"><a
-                        href="graphics.html">Графика</a></li>
+                        href="{% url 'landscapes' %}">Пейзажи</a></li>
                 <li class="header__item-mobile header__item-mobile_active header__item-mobile_hidden"><a
-                        href="sculptures.html">Скульптуры</a></li>
+                        href="{% url 'graphics' %}">Графика</a></li>
                 <li class="header__item-mobile header__item-mobile_active header__item-mobile_hidden"><a
-                        href="murals.html">Настенная живопись</a></li>
-                <li class="header__item-mobile"><a href="about.html">Контакты / Обо мне</a></li>
+                        href="{% url 'sculptures' %}">Скульптуры</a></li>
+                <li class="header__item-mobile header__item-mobile_active header__item-mobile_hidden"><a
+                        href="{% url 'murals' %}">Настенная живопись</a></li>
+                <li class="header__item-mobile"><a href="{% url 'about' %}">Контакты / Обо мне</a></li>
             </ul>
         </nav>
     </header>
@@ -70,12 +71,12 @@
     <footer class="footer">
         <nav class="footer__nav">
             <ul class="footer__items">
-                <li class="footer__item"><a href="portraits.html">Портреты</a></li>
-                <li class="footer__item"><a href="landscapes.html">Пейзажи</a></li>
-                <li class="footer__item"><a href="graphics.html">Графика</a></li>
-                <li class="footer__item"><a href="sculptures.html">Скульптуры</a></li>
-                <li class="footer__item"><a href="murals.html">Настенная живопись</a></li>
-                <li class="footer__item"><a href="about.html">Обо мне 🎨</a></li>
+                <li class="footer__item"><a href="{% url 'portraits' %}">Портреты</a></li>
+                <li class="footer__item"><a href="{% url 'landscapes' %}">Пейзажи</a></li>
+                <li class="footer__item"><a href="{% url 'graphics' %}">Графика</a></li>
+                <li class="footer__item"><a href="{% url 'sculptures' %}">Скульптуры</a></li>
+                <li class="footer__item"><a href="{% url 'murals' %}">Настенная живопись</a></li>
+                <li class="footer__item"><a href="{% url 'about' %}">Обо мне 🎨</a></li>
             </ul>
         </nav>
     </footer>
