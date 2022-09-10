@@ -1,5 +1,7 @@
 import re, os, json, time, random
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import PicturesForm
@@ -66,6 +68,7 @@ def get_all_ids():
     return [x['id_photo'] for x in list(Pictures.objects.values('id_photo'))]
 
 
+@login_required()
 def new_photos(request):
     fresh_photos = get_fresh_photos(request)
     pictures_form = formset_factory(PicturesForm, extra=0)
@@ -88,6 +91,7 @@ def new_photos(request):
     return render(request, "new_photos.html", context)
 
 
+@login_required()
 def all_photos(request):
     all_photos = list(Pictures.objects.all())
     pictures_form = formset_factory(PicturesForm, extra=0)
@@ -114,4 +118,13 @@ def all_photos(request):
     context = {}
     context['formset'] = formset
     return render(request, "all_photos.html", context)
+
+
+
+
+
+
+
+
+
 
