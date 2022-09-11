@@ -91,7 +91,7 @@ def new_photos(request):
     return render(request, "new_photos.html", context)
 
 
-@login_required()
+
 def all_photos(request):
     all_photos = list(Pictures.objects.all())
     pictures_form = formset_factory(PicturesForm, extra=0)

@@ -81,7 +81,7 @@
     {% csrf_token %}
 
     <div class="nav-menu">
-      <button><a href="/new_photos">Синхронизировать новые фото из ВК</a></button>
+      <button class="sync-button"><a href="/new_photos">Синхронизировать новые фото из ВК</a></button>
       <button type="submit" value="Submit" class="save-button" style="display:none; background: #a3f0bd">Сохранить изменения</button>
     </div>
 
@@ -128,6 +128,10 @@
     document.querySelectorAll('input, textarea, select').forEach(x => x.addEventListener('input', (event) => {
         document.querySelector('.save-button').style['display'] = 'inline-block'
     }));
+    document.querySelector('.sync-button').addEventListener('click', function(event) {
+        this.innerHTML = 'Идёт синхронизация...';
+        this.setAttribute('disabled', true);
+    })
 </script>
 </body>
 </html>
