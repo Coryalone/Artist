@@ -1,8 +1,6 @@
-import re, os, json, time, random
+import re, os, json
 
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import LoginView
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import PicturesForm
 from django.forms import formset_factory
@@ -93,7 +91,12 @@ def new_photos(request):
 
 @login_required()
 def all_photos(request):
-    all_photos = list(Pictures.objects.all())
+    page_size = 12
+    page_number = int(request.GET.get('page')) - 1
+    page_started = page_number * page_size
+    page_ended = page_started + page_size
+    all_photos = list(Pictures.objects.all()[page_started:page_ended])
+    count = Pictures.objects.all().count()
     pictures_form = formset_factory(PicturesForm, extra=0)
     formset = pictures_form(request.POST or None, initial=[
         {'id_photo': x.id_photo, 'url_small': x.url_small, 'url_big': x.url_big,
@@ -117,6 +120,7 @@ def all_photos(request):
 
     context = {}
     context['formset'] = formset
+    context['all_photos_count'] = count
     return render(request, "all_photos.html", context)
 
 
