@@ -1,3 +1,5 @@
+let columnHeights = [0, 0, 0];
+
 function lazyLoaded(event) {
     const image = event.target.parentElement;
     let minColumn = columnHeights
