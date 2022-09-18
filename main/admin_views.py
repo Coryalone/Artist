@@ -91,8 +91,10 @@ def new_photos(request):
 
 @login_required()
 def all_photos(request):
+    page_number = 0
+    if request.method == 'GET' and 'page' in request.GET:
+        page_number = int(request.GET.get('page')) - 1
     page_size = 12
-    page_number = int(request.GET.get('page')) - 1
     page_started = page_number * page_size
     page_ended = page_started + page_size
     all_photos = list(Pictures.objects.all()[page_started:page_ended])
