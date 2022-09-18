@@ -60,7 +60,7 @@ def get_fresh_photos(request):
             lol_count += 1
             if lol_count >= 12:
                 break
-    return pocket
+    return pocket, count_photo
 
 def get_all_ids():
     return [x['id_photo'] for x in list(Pictures.objects.values('id_photo'))]
@@ -68,7 +68,7 @@ def get_all_ids():
 
 @login_required()
 def new_photos(request):
-    fresh_photos = get_fresh_photos(request)
+    fresh_photos, count_photo = get_fresh_photos(request)
     pictures_form = formset_factory(PicturesForm, extra=0)
     formset = pictures_form(request.POST or None, initial=[
         {'id_photo': x['id'], 'url_small': x['small_url'], 'url_big': x['big_url'], 'description': x['text'],
@@ -83,9 +83,10 @@ def new_photos(request):
                 Pictures.objects.create(**form.cleaned_data)
         return redirect('all_photos')
 
-
+    count_photo = count_photo - len(fresh_photos)
     context = {}
     context['formset'] = formset
+    context['count_photo'] = count_photo
     return render(request, "new_photos.html", context)
 
 

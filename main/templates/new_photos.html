@@ -70,6 +70,12 @@
         .model-field-category {
             margin-bottom: 30px;
         }
+        .unsynchronized-photos {
+            font-family: arial;
+            color: #666666;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
 
     </style>
 </head>
@@ -80,8 +86,11 @@
     {% csrf_token %}
 
     <div class="nav-menu">
-      <button type="submit" value="Submit">Сохранить</button>
+        <button type="submit" value="Submit">Сохранить</button>
         <button><a href="/admin">Отменить синхронизацию</a></button>
+        {% if count_photo > 0 %}
+            <div class="unsynchronized-photos">Осталось выгрузить {{ count_photo }} фото из ВК</div>
+        {% endif %}
     </div>
 
     {{ formset.management_form }}
