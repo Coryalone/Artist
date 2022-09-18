@@ -24,6 +24,14 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Nunito Sans';
+    src: url('../fonts/NunitoSans-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* Container */
 
 html {
@@ -348,7 +356,7 @@ body {
 
 .footer__nav {
     font-size: 1.28rem;
-    font-family: 'Lora-Regular', serif;
+    font-family: 'Nunito Sans', sans-serif;
     font-weight: 400;
     line-height: 1.3;
     font-style: normal;
@@ -372,12 +380,12 @@ body {
 }
 
 .footer__item:not(:last-child):not(:last-child) {
-    border-right: 1px solid #000;
+    border-right: 1px solid #aaa;
 }
 
 .footer__item a {
     text-decoration: none;
-    color: #000;
+    color: #888;
 }
 
 .footer__item a:hover {
@@ -385,7 +393,7 @@ body {
 }
 
 .footer__item {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 2rem;
 }
 
 @media screen and (max-width: 48em) {
