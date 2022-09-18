@@ -53,6 +53,7 @@ def get_fresh_photos(request):
     all_ids = get_all_ids()
     pocket = []
     lol_count = 0
+    count_photo = count_photo - len(all_ids)
 
     for x in photos:
         if x['id'] not in all_ids:
@@ -83,7 +84,6 @@ def new_photos(request):
                 Pictures.objects.create(**form.cleaned_data)
         return redirect('all_photos')
 
-    count_photo = count_photo - len(fresh_photos)
     context = {}
     context['formset'] = formset
     context['count_photo'] = count_photo
