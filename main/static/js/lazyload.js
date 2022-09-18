@@ -1,3 +1,15 @@
+function lazyLoaded(event) {
+    const image = event.target.parentElement;
+    let minColumn = columnHeights
+            .reduce((acc, cur, index) => {
+                return cur < acc.height ? {index, height:cur} : acc
+            }, {index:-1, height: Infinity})
+            .index;
+    const imageGallery = document.querySelectorAll('.gallery');
+    imageGallery[minColumn].append(image);
+    columnHeights[minColumn] += image.clientHeight;
+}
+
 function intitializeLazyLoading() {
     const lazyloadImages = document.querySelectorAll('.lazy');
 
@@ -10,6 +22,7 @@ function intitializeLazyLoading() {
                     image.removeAttribute('data-src');
                     image.classList.remove('lazy');
                     imageObserver.unobserve(image);
+                    image.addEventListener('load', lazyLoaded);
                 }
             });
         });
@@ -28,6 +41,7 @@ function intitializeLazyLoading() {
                     img.src = img.dataset.src;
                     img.removeAttribute('data-src');
                     img.classList.remove('lazy');
+                    img.addEventListener('load', lazyLoaded);
                 }
             });
             if (lazyloadImages.length == 0) {
