@@ -230,11 +230,12 @@ body {
 
 .gallery__item {
     position: relative;
+    text-align: center;
 }
 
 .gallery__item img {
     max-width: 100%;
-    border-radius: 1%;
+    border-radius: 5px;
     filter: saturate(1.3) contrast(1.1);
 }
 
