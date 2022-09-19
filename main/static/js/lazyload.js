@@ -63,6 +63,19 @@ function intitializeLazyLoading() {
     }
 }
 
+function checkPhotosToEmerge(event) {
+    document.querySelectorAll('.emerge').forEach(function (img) {
+        const rect = img.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+            setTimeout(() => {
+                img.style.opacity = 1;
+                img.style.transform = 'translateY(0)';
+                img.classList.remove('emerge');
+            }, Math.random() * 3000);
+        }
+    })
+}
+
 function initializeMergeUp() {
 
     document.addEventListener('scroll', checkPhotosToEmerge);
