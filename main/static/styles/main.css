@@ -239,6 +239,9 @@ body {
 .gallery__item {
     position: relative;
     text-align: center;
+    opacity: 0.01;
+    transform: translateY(100px);
+    transition: 0.5s ease-out
 }
 
 .gallery__item img {

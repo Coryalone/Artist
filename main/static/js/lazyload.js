@@ -10,6 +10,8 @@ function lazyLoaded(event) {
     const imageGallery = document.querySelectorAll('.gallery');
     imageGallery[minColumn].append(image);
     columnHeights[minColumn] += image.clientHeight;
+    image.classList.add('emerge');
+    checkPhotosToEmerge();
 }
 
 function intitializeLazyLoading() {
@@ -60,3 +62,14 @@ function intitializeLazyLoading() {
         lazyload();
     }
 }
+
+function initializeMergeUp() {
+
+    document.addEventListener('scroll', checkPhotosToEmerge);
+    window.addEventListener('resize', checkPhotosToEmerge);
+    window.addEventListener('orientationChange', checkPhotosToEmerge);
+
+    checkPhotosToEmerge();
+}
+
+initializeMergeUp()
