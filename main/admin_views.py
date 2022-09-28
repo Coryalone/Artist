@@ -1,3 +1,4 @@
+import math
 import re, os, json
 
 from django.contrib.auth.decorators import login_required
@@ -123,7 +124,8 @@ def all_photos(request):
 
     context = {}
     context['formset'] = formset
-    context['all_photos_count'] = count
+    context['pages'] = range(1, math.ceil(count / page_size) + 1)
+    context['current_page'] = page_number + 1
     return render(request, "all_photos.html", context)
 
 

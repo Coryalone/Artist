@@ -70,6 +70,23 @@
         .model-field-category {
             margin-bottom: 30px;
         }
+        .page-button {
+            display: inline-block;
+            margin: 5px;
+            border: 1px solid gray;
+            border-radius: 3px;
+            background: #ccc;
+            padding: 10px;
+            color: black;
+            text-decoration: none;
+        }
+        .page-button:hover {
+            background: #ddd;
+        }
+        .page-button.is-active {
+            background: #888;
+            color: white;
+        }
 
 
     </style>
@@ -121,6 +138,14 @@
             </div>
         </div>
     <hr>
+    {% endfor %}
+
+    {% for page_index in pages %}
+        {% if page_index == current_page %}
+        <a href="{% url 'all_photos' %}?page={{page_index}}" class="page-button is-active">{{page_index}}</a>
+        {% else %}
+        <a href="{% url 'all_photos' %}?page={{page_index}}" class="page-button">{{page_index}}</a>
+        {% endif %}
     {% endfor %}
 
 </form>
